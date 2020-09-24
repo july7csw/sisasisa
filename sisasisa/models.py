@@ -3,8 +3,8 @@ from django.conf import settings
 from django.utils import timezone
 
 
-class news_infos(models.Model):
-    news_id = models.CharField(max_length=200)
+class News_infos(models.Model):
+    news_id = models.CharField(max_length=100)
     provider = models.CharField(max_length=40)
     category = models.CharField(max_length=40)
     category_incident = models.CharField(max_length=40)
@@ -18,7 +18,7 @@ class news_infos(models.Model):
         self.save()
 
 
-class words(models.Model):
+class Words(models.Model):
     word = models.CharField(max_length=30)
     meaning = models.TextField()
 
@@ -29,7 +29,7 @@ class words(models.Model):
         self.save()
 
 
-class assoicated_words(models.Model):
+class Assoicated_words(models.Model):
     wordId = models.CharField(max_length=30)
     word = models.CharField(max_length=30)
     weight = models.DecimalField(max_digits=5,decimal_places=2)
@@ -41,7 +41,7 @@ class assoicated_words(models.Model):
         self.save()
 
 
-class amounted_mentions(models.Model):
+class Amounted_mentions(models.Model):
     wordId = models.CharField(max_length=30)
     label = models.CharField(max_length=10)
     hits = models.IntegerField()
@@ -53,7 +53,7 @@ class amounted_mentions(models.Model):
         self.save()
 
 
-class user_scrap(models.Model):
+class User_scrap(models.Model):
     user_Identifier = models.CharField(max_length=100)
     wordId = models.CharField(max_length=30)
 
