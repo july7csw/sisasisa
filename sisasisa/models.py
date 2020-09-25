@@ -32,7 +32,7 @@ class Words(models.Model):
 class Assoicated_words(models.Model):
     wordId = models.CharField(max_length=30)
     word = models.CharField(max_length=30)
-    weight = models.DecimalField(max_digits=5,decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
         return self.word
@@ -62,3 +62,4 @@ class User_scrap(models.Model):
 
     def publish(self):
         self.save()
+
