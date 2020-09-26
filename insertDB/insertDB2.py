@@ -21,3 +21,4 @@ with open(file_PATH, newline='') as files:
             meaning=r[1].value,
         )
     print("end!")
+
