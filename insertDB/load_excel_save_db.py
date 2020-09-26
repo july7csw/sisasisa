@@ -1,14 +1,22 @@
-import pandas as pd
+import os
+import csv
+import django
 
-filename = 'result_2019-2020_ver2.xlsx'
-data = pd.read_excel(filename)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+django.setup()
 
-data_word = data.용어
-data_aug = data.AUG
+from sisasisa.models import Amounted_mentions
 
-df = pd.DataFrame({'용어': data_word, '202008': data_aug})
+file_PATH = 'a.csv'
+result = []
 
-df = df.sort_values(by='202008', ascending=False)
-df = df.head(10)
-
-print(df)
+with open(file_PATH, newline='') as file:
+    data_reader = csv.DictReader(file)
+    for r in data_reader:
+        print(r)
+        Amounted_mentions.objects.create(
+            wordId= r['1'],
+            label='202008',
+            hits=r['202008']
+        )
+    print("end!")
