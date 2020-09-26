@@ -5,7 +5,7 @@ from .models import Words
 
 
 def news_infos(request):
-    return render(request, 'news_infos/news_infos.html', {})
+    return render(request, 'news_infos/index.html', {})
 
 
 def word_list(request):
