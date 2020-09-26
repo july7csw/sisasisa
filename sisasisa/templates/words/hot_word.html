@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HOT 시사용어</title>
+</head>
+<body>
+HOT 시사용어<br/>
+{%  for word in hot_word %}
+       wordID {{ word.wordId }} / Hits {{ word.hits }} <br/>
+    {% endfor %}
+</body>
+</html>
