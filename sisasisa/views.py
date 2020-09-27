@@ -18,5 +18,5 @@ def word_list(request):
 
 def hot_word(request):
 
-    words = Amounted_mentions.objects.order_by('-hits')[:9]
+    words = Amounted_mentions.objects.filter(label='202008').order_by('-hits')[:9]
     return render(request, 'words/hot_word.html', {'hot_word': words})
