@@ -6,8 +6,8 @@
 </head>
 <body>
 HOT 시사용어<br/>
-{%  for word in hot_word %}
-       wordID {{ word.wordId }} / Hits {{ word.hits }} <br/>
-    {% endfor %}
+{%  for w in list %}
+       {{ w }}<br/>
+{% endfor %}
 </body>
 </html>
