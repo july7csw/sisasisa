@@ -1,22 +1,25 @@
 import os
-import csv
+import openpyxl
 import django
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
 
-from sisasisa.models import Amounted_mentions
+from sisasisa.models import Words
 
-file_PATH = 'a.csv'
+file_PATH = 'sisa_term_20200924.xlsx.xlsx'
 result = []
 
-with open(file_PATH, newline='') as file:
-    data_reader = csv.DictReader(file)
-    for r in data_reader:
+
+with open(file_PATH, newline='') as files:
+    wb = openpyxl.load_workbook(file_PATH)
+    ws = wb.active
+    print(ws)
+    for r in ws.rows:
         print(r)
-        Amounted_mentions.objects.create(
-            wordId= r['1'],
-            label='202008',
-            hits=r['202008']
+        Words.objects.create(
+            word=r[0].value,
+            meaning=r[1].value,
         )
     print("end!")
+

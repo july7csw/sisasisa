@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Words
 from .models import Amounted_mentions
+from .models import User_scrap
 import pandas as pd
 
 
@@ -17,6 +18,20 @@ def word_list(request):
 
 
 def hot_word(request):
+    hits = Amounted_mentions.objects.filter(label='202008').order_by('-hits')[:10]
+    wordIdList = [w.wordId for w in hits]
+    words = []
+    for i in wordIdList:
+        word = Words.objects.get(id=i)
+        words.append(word.word)
+    return render(request, 'words/hot_word.html', {'list': words})
 
-    words = Amounted_mentions.objects.order_by('-hits')[:9]
-    return render(request, 'words/hot_word.html', {'hot_word': words})
+
+def scrap(request):
+    list = User_scrap.objects.filter(user_Identifier=request.user)
+    wordIdList = [w.wordId for w in list]
+    words = []
+    for i in wordIdList:
+        word = Words.objects.get(id=i)
+        words.append(word.word)
+    return render(request, 'words/scrap.html', {'scrapList': words})
