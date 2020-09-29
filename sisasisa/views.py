@@ -24,7 +24,8 @@ def hot_word(request):
     for i in wordIdList:
         word = Words.objects.get(id=i)
         words.append(word.word)
-    return render(request, 'words/hot_word.html', {'list': words})
+    # return render(request, 'words/hot_word.html', {'list': words})
+    return render(request, 'base.html', {'list': words})
 
 
 def scrap(request):

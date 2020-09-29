@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SISASISA</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style type="text/css">
+      .navbar-toggle{
+        float: left;
+        margin-left: 3%;
+      }
+      .navbar-inverse{
+        background-color: #c0fdff;
+        border : none;
+      }
+      .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+        background-color: #c0fdff;
+        border : none;
+      }
+      .navbar-inverse .navbar-toggle {
+        border: 0;
+        outline: 0;
+      }
+      .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #fff;
+      }
+      .nav-tabs > li {
+        float:none;
+        display:inline-block;
+        zoom:1;
+      }
+      .nav-tabs {
+        text-align:center;
+      }
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+        color: #2E75B6;
+        border: 1px solid #ddd;
+        border-top-color:transparent;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-right-color: transparent;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-bottom-color: #2E75B6;
+        border-bottom-style: solid;
+        border-bottom-width: 5px;
+        border-left-color: transparent;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+      }
+      .bgcolorskyblue{
+        background-color: #c0fdff;
+      }
+      .paddingtoptab{
+        padding-top: 50px;
+      }
+      .maincontent{
+        padding-top: 30px;
+        color: #9d9d9d;
+      }
+      h4{
+        font-weight: 600;
+      }
+      h5{
+        font-size: 1.2em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+        background-color: #c0fdff;
+      }
+      a{
+        color: #fff;
+      }
+      .boldhr{
+        border: 0;
+        height: 2px;
+        background: #ccc;
+      }
+      #ssssmenu{
+        text-align: right;
+      }
+      .btn-link {
+        color: #9d9d9d;
+      }
+      .btn-link:focus, .btn-link:hover {
+        color: #9d9d9d;
+        text-decoration: none;
+        background-color: transparent;
+      }
+      .sssssearch {
+        width: 30%;
+        display: relative;
+      }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html"><img src="/static/logo.png" style="max-width:100px; margin:15px 3%;"></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse" id="ssssmenu">
+          <ul class="nav navbar-nav">
+            <li><a href="#">메뉴1</a></li>
+            <li><a href="#">메뉴2</a></li>
+            <li><a href="#">메뉴3</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+   <!-- nav end -->
+    <div class="container-fluid">
+   <!-- tab start -->
+      <div class="row bgcolorskyblue paddingtoptab">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+            <ul class="nav nav-tabs">
+              <li style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#steady"><h4>STEADY</h4></a></li>
+              <li class="active" style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#hot"><h4>HOT</h4></a></li>
+              <li style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#my"><h4>MY</h4></a></li>
+            </ul>
+        </div>
+      </div>
+   <!-- tab end -->
+      {% block container %}
+      {% endblock %}
+
+    </div>
+</body>
+</html>
