@@ -1,192 +1,57 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SISASISA</title>
+{% extends 'base.html' %}
+{% block container %}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <style type="text/css">
-      .navbar-toggle{
-        float: left;
-        margin-left: 3%;
-      }
-      .navbar-inverse{
-        background-color: #c0fdff;
-        border : none;
-      }
-      .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
-        background-color: #c0fdff;
-        border : none;
-      }
-      .navbar-inverse .navbar-toggle {
-        border: 0;
-        outline: 0;
-      }
-      .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: #fff;
-      }
-      .nav-tabs > li {
-        float:none;
-        display:inline-block;
-        zoom:1;
-      }
-      .nav-tabs {
-        text-align:center;
-      }
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-        color: #2E75B6;
-        border: 1px solid #ddd;
-        border-top-color:transparent;
-        border-top-style: solid;
-        border-top-width: 1px;
-        border-right-color: transparent;
-        border-right-style: solid;
-        border-right-width: 1px;
-        border-bottom-color: #2E75B6;
-        border-bottom-style: solid;
-        border-bottom-width: 5px;
-        border-left-color: transparent;
-        border-left-style: solid;
-        border-left-width: 1px;
-        border-image-source: initial;
-        border-image-slice: initial;
-        border-image-width: initial;
-        border-image-outset: initial;
-        border-image-repeat: initial;
-      }
-      .bgcolorskyblue{
-        background-color: #c0fdff;
-      }
-      .paddingtoptab{
-        padding-top: 50px;
-      }
-      .maincontent{
-        padding-top: 30px;
-        color: #9d9d9d;
-      }
-      h4{
-        font-weight: 600;
-      }
-      h5{
-        font-size: 1.2em;
-        margin-top: 5px;
-        margin-bottom: 5px;
-      }
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-        background-color: #c0fdff;
-      }
-      a{
-        color: #fff;
-      }
-      .boldhr{
-        border: 0;
-        height: 2px;
-        background: #ccc;
-      }
-      #ssssmenu{
-        text-align: right;
-      }
-      .btn-link {
-        color: #9d9d9d;
-      }
-      .btn-link:focus, .btn-link:hover {
-        color: #9d9d9d;
-        text-decoration: none;
-        background-color: transparent;
-      }
-      .sssssearch {
-        width: 30%;
-        display: relative;
-      }
-
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html"><img src="/static/logo.png" style="max-width:100px; margin:15px 3%;"></a>
+<!-- contents start -->
+<div class="row maincontent">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="tab-content">
+          <div class="tab-pane fade" id="steady">
+            <p>STEADY TERMS</p>
+          </div>
+          <div class="tab-pane fade in active" id="hot">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h4>HOT 시사용어</h4></th>
+                        <th style="text-align: right;">
+                            <div class="dropdown">
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">사회</a></li>
+                                <li><a href="#">경제</a></li>
+                                <li><a href="#">IT</a></li>
+                                <li><a href="#">문화</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%  for w in list %}
+                    <tr><td colspan="2"><h5>{{ w }}</h5></td></tr>
+                {% endfor %}
+                    <!--<tr><td colspan="2"><h5>1. 구상권</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>2. 용적률</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>3. 공공재</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>4. 주택임대차보호법</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>5. 종합부동산세</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>6. 소득세</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>7. 뉴노멀</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>8. 임대료</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>9. 셧다운</h5></td></tr>-->
+                    <!--<tr><td colspan="2"><h5>10. 기본소득</h5></td></tr>-->
+                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="my">
+          {%  for w in list %}
+              <h5>{{ w }}</h5>
+          {% endfor %}
+          </div>
         </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse" id="ssssmenu">
-          <ul class="nav navbar-nav">
-            <li><a href="#">메뉴1</a></li>
-            <li><a href="#">메뉴2</a></li>
-            <li><a href="#">메뉴3</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-   <!-- nav end -->
-    <div class="container-fluid">
-   <!-- tab start -->
-      <div class="row bgcolorskyblue paddingtoptab">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
-            <ul class="nav nav-tabs">
-              <li style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#steay"><h4>STEADY</h4></a></li>
-              <li class="active" style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#hot"><h4>HOT</h4></a></li>
-              <li style="width: 32%;"><a class="nav-link" data-toggle="tab" href="#my"><h4>MY</h4></a></li>
-            </ul>
-        </div>
-      </div>
-   <!-- tab end -->
-   <!-- contents start -->
-       <div class="row maincontent">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="tab-content">
-              <div class="tab-pane fade" id="steady">
-                <p>STEADY TERMS</p>
-              </div>
-              <div class="tab-pane fade in active" id="hot">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th><h4>HOT 시사용어</h4></th>
-                            <th style="text-align: right;">
-                                <div class="dropdown">
-                                  <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
-                                  <span class="caret"></span></button>
-                                  <ul class="dropdown-menu">
-                                    <li><a href="#">사회</a></li>
-                                    <li><a href="#">경제</a></li>
-                                    <li><a href="#">IT</a></li>
-                                    <li><a href="#">문화</a></li>
-                                  </ul>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td colspan="2"><h5>1. 구상권</h5></td></tr>
-                        <tr><td colspan="2"><h5>2. 용적률</h5></td></tr>
-                        <tr><td colspan="2"><h5>3. 공공재</h5></td></tr>
-                        <tr><td colspan="2"><h5>4. 주택임대차보호법</h5></td></tr>
-                        <tr><td colspan="2"><h5>5. 종합부동산세</h5></td></tr>
-                        <tr><td colspan="2"><h5>6. 소득세</h5></td></tr>
-                        <tr><td colspan="2"><h5>7. 뉴노멀</h5></td></tr>
-                        <tr><td colspan="2"><h5>8. 임대료</h5></td></tr>
-                        <tr><td colspan="2"><h5>9. 셧다운</h5></td></tr>
-                        <tr><td colspan="2"><h5>10. 기본소득</h5></td></tr>
-                        <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
-                    </tbody>
-                </table>
-              </div>
-              <div class="tab-pane fade" id="my">
-                <p>MY TERMS</p>
-              </div>
-            </div>
-        </div>
-      </div>
-   <!-- contents end -->
     </div>
-
-</body>
-</html>
+</div>
+<!-- contents end -->
+{% endblock %}

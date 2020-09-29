@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<!-- contents start -->
+<div class="row maincontent">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="tab-content">
+          <div class="tab-pane fade" id="steady">
+            <p>STEADY TERMS</p>
+          </div>
+          <div class="tab-pane fade in active" id="hot">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h4>HOT 시사용어</h4></th>
+                        <th style="text-align: right;">
+                            <div class="dropdown">
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">사회</a></li>
+                                <li><a href="#">경제</a></li>
+                                <li><a href="#">IT</a></li>
+                                <li><a href="#">문화</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="2"><h5>1. 구상권</h5></td></tr>
+                    <tr><td colspan="2"><h5>2. 용적률</h5></td></tr>
+                    <tr><td colspan="2"><h5>3. 공공재</h5></td></tr>
+                    <tr><td colspan="2"><h5>4. 주택임대차보호법</h5></td></tr>
+                    <tr><td colspan="2"><h5>5. 종합부동산세</h5></td></tr>
+                    <tr><td colspan="2"><h5>6. 소득세</h5></td></tr>
+                    <tr><td colspan="2"><h5>7. 뉴노멀</h5></td></tr>
+                    <tr><td colspan="2"><h5>8. 임대료</h5></td></tr>
+                    <tr><td colspan="2"><h5>9. 셧다운</h5></td></tr>
+                    <tr><td colspan="2"><h5>10. 기본소득</h5></td></tr>
+                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="my">
+            <p>MY TERMS</p>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- contents end -->
+{% endblock %}
