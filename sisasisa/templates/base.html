@@ -35,7 +35,7 @@
         border-color: transparent;
       }
       .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
-        max-width: 300px;
+        max-width: 600px;
       }
       .navbar-form{
         padding: 0;
@@ -83,11 +83,28 @@
       .nav-tabs>li>a:hover {
         border-color: transparent;
       }
+      #ssssmenu>ul{
+        margin-left: 30px;
+        text-align: center;
+      }
+
+      #ssssmenu>ul>li{
+        width: 90px;
+      }
+      #ssssmenu>ul>li:first-child{
+        border-left: none;
+      }
+
+      #ssssmenu>ul>li>a{
+        color: #2E75B6;
+        font-size: 16px;
+        font-weight: 500;
+      }
       .bgcolorskyblue{
         background-color: #c0fdff;
       }
       .paddingtoptab{
-        padding-top: 40px;
+        padding-top: 50px;
       }
       .maincontent{
         padding-top: 20px;
@@ -135,17 +152,64 @@
       }
     .removeicon{
         font-size: 30px;
-        padding-rigth: 50%;
+        padding-right: 10%;
     }
     .list-group-item{
         border: none;
+    }
+    .logincontent{
+        padding-top: 60px;
+        color: #9d9d9d;
+    }
+    .screen_out {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        line-height: 0;
+        text-indent: -9999px;
+    }
+    .loginset{
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        box-sizing: border-box;
+    }
+    .loginform{
+        margin: 0;
+        height: 45px;
+        line-height: 1.5;
+    }
+    .loginform>input{
+        border: none;
+        outline: 0;
+        border-radius: 0;
+        box-shadow: none;
+        height: 43px;
+        line-height: 1.5;
+    }
+    .loginset>.loginform+.loginform{
+        border-top: 1px solid #ddd;
+    }
+    .loginbtn{
+        width: 100%;
+        height: 43px;
+        border-radius: 2;
+        color: #fff;
+        background-color: #2E75B6;
+    }
+    .checkbox, .radio {
+        margin: 15px 0;
+        line-height: 1.5;
+    }
+    .naverlogin{
+        margin-top: 15px;
     }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="row">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -157,13 +221,14 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse" id="ssssmenu">
                   <ul class="nav navbar-nav">
-                    <li><a href="#">메뉴1</a></li>
-                    <li><a href="#">메뉴2</a></li>
-                    <li><a href="#">메뉴3</a></li>
+                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">STEADY</a></li>
+                    <li><a href="#">HOT</a></li>
+                    <li><a href="#">MY</a></li>
                   </ul>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                 <form action="" class="navbar-form navbar-right ssssserchbox">
                   <div class="input-group">
                     <input type="text" class="form-control">
