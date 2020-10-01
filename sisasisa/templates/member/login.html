@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block container %}
+{%  load socialaccount %}
+{%  providers_media_js %}
 
 <!-- contents start -->
 <script type="text/javascript">
@@ -32,8 +34,8 @@
       <button type="submit" class="btn loginbtn">로그인</button>
     </form>
     <div class="naverlogin">
-        <img src="/static/naver_login2.PNG" style="width: 50%;">
-        <img src="/static/google_login.png" style="width: 48%;">
+        <a href="{% provider_login_url 'naver' %}"><img src="/static/naver_login2.PNG" style="width: 50%;"></a>
+        <a href="{% provider_login_url 'google' %}"><img src="/static/google_login.png" style="width: 48%;"></a>
     </div>
   </div>
   <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4"></div>
