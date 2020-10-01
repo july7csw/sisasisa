@@ -8,7 +8,7 @@
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(" ")
             var onlyword = wordvalue.slice(splitindex)
-            $(".modal-header h4").text(onlyword);
+            $(".modal-header .modalword").text(onlyword);
         })
     });
 </script>
@@ -44,6 +44,7 @@
                 </tbody>
             </table>
           </div>
+
           <div class="tab-pane fade in active" id="hot">
             <table class="table table-hover">
                 <thead>
@@ -74,18 +75,41 @@
             </table>
           </div>
           <div class="tab-pane fade" id="my">
-          {%  for w in list %}
-              <h5>{{ w }}</h5>
-          {% endfor %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 80%;"><h4>MY 시사용어</h4></th>
+                        <th style="text-align: right; width: auto;">
+                            <div class="dropdown">
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">정렬 선택
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">최신순</a></li>
+                                <li><a href="#">가나다순</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%  for w in list %}
+                    <tr>
+                        <td><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{forloop.counter}}. {{ w }}</h5></a></td>
+                        <td style="text-align: right;"><a class="modaldata" data-toggle="modal" data-target="#removemodal" data-id="시사용어 삭제"><i class="material-icons removeicon">remove</i></a></td>
+                    </tr>
+                {% endfor %}
+                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+            </table>
           </div>
         </div>
-<!-- Modal -->
+<!-- Modal1 -->
         <div class="modal fade" id="ssssmodal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="wordvalue"></h4>
+                        <h4 class="modal-title modalword" id="wordvalue"></h4>
                     </div>
                     <div class="modal-body">
                         <p>
@@ -98,6 +122,28 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal2 -->
+        <div class="modal fade" id="removemodal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">시사용어 삭제</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            스크랩 목록에서 시사용어를 삭제하시겠습니까?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">확인</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
                     </div>
                 </div>
             </div>
