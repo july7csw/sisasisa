@@ -136,7 +136,7 @@ for m in range(7, 8):
     endQuery = "2019-" + month + "-" + endDay
     for i in range(0, len(wordList)):
         keyword = wordList[i]
-        if meaningList[i].__eq__(meaningList[i + 1]):
+        if meaningList[i].__eq__(meaningList[i + 1]) and i < len(wordList):
             keyword = wordList[i] + " OR " + wordList[i + 1]
             cnt = findWord(keyword, startQuery, endQuery)
             countList.append(cnt)
