@@ -4,10 +4,10 @@ from django.utils import timezone
 
 
 class News_infos(models.Model):
+    wordId = models.CharField(max_length=200)
     news_id = models.CharField(max_length=100)
     provider = models.CharField(max_length=40)
     category = models.CharField(max_length=40)
-    category_incident = models.CharField(max_length=40)
     provider_link_page = models.CharField(max_length=300, null=True)
     published_at = models.DateTimeField(blank=True, null=True)
 

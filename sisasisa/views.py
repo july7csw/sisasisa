@@ -27,6 +27,12 @@ def hot_word(request):
     return render(request, 'news_infos/index.html', {'list': words})
 
 
+def detail_word(request):
+    word = Words.objects.get(word=request.__getattribute__('word'))
+    meaning = word.__getattribute__('meaning')
+    return render(request, 'words/detail_word.html', {'word': word, 'meaning': meaning})
+
+
 def scrap(request):
     list = User_scrap.objects.filter(user_Identifier=request.user)
     wordIdList = [w.wordId for w in list]
