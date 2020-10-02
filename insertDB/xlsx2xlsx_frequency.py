@@ -12,6 +12,9 @@ django.setup()
 from sisasisa.models import Amounted_mentions
 from sisasisa.models import Words
 
+
+# 수정~~~~~~~~~
+
 amountList = list(Amounted_mentions.objects.filter(label__startswith='2019').values())
 
 df = pd.DataFrame(columns=['wordId', '2019'])

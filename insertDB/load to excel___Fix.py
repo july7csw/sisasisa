@@ -121,13 +121,13 @@ def findEndDay(m):
     if m == 1 or m == 3 or m == 5 or m == 7 or m == 8 or m == 10 or m == 12:
         endDay = "31"
     elif m == 2:
-        endDay = "28"
+        endDay = "29"
     else:
         endDay = "30"
     return endDay
 
 
-for m in range(8, 9):
+for m in range(9, 13):
     month = findMonth(m)
     startDay = "01"
     endDay = findEndDay(m)
@@ -136,3 +136,17 @@ for m in range(8, 9):
     for i in range(0, len(wordIdList2)):
         findWord(wordIdList2[i], startQuery, endQuery)
         print(i, "/", len(wordIdList2))
+
+print("2020시작")
+
+for m in range(1, 5):
+    month = findMonth(m)
+    startDay = "01"
+    endDay = findEndDay(m)
+    startQuery = "2020-" + month + "-" + startDay
+    endQuery = "2020-" + month + "-" + endDay
+    for i in range(0, len(wordIdList2)):
+        findWord(wordIdList2[i], startQuery, endQuery)
+        print(m, "월 : ", i, "/", len(wordIdList2))
+
+print("end!")
