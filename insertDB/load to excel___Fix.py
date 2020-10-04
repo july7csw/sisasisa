@@ -127,12 +127,12 @@ def findEndDay(m):
     return endDay
 
 
-for m in range(8, 9):
+for m in range(1, 4):
     month = findMonth(m)
     startDay = "01"
     endDay = findEndDay(m)
-    startQuery = "2019-" + month + "-" + startDay
-    endQuery = "2019-" + month + "-" + endDay
+    startQuery = "2020-" + month + "-" + startDay
+    endQuery = "2020-" + month + "-" + endDay
     for i in range(0, len(wordIdList2)):
         findWord(wordIdList2[i], startQuery, endQuery)
         print(i, "/", len(wordIdList2))

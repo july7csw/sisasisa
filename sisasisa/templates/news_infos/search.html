@@ -4,6 +4,8 @@
 <!-- contents start -->
 <script type="text/javascript">
     $(function () {
+        $('#hot_li').removeClass("active");
+        $('#steady_li').addClass("active");
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(" ")
@@ -14,32 +16,30 @@
 </script>
 <div class="row maincontent">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="tab-pane fade" id="steady">
-                <div>
-                    <h4>검색 결과</h4>
-                    <hr class="boldhr"/>
-                </div>
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <dl>
-                        <dt><a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>용어 자리</h5></a></dt>
-                        <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
-                    </dl>
-                  </li>
-                  <li class="list-group-item">
-                    <dl>
-                        <dt><a class="resultword">용어 자리</a></dt>
-                        <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
-                    </dl>
-                  </li>
-                  <li class="list-group-item">
-                    <dl>
-                        <dt><a class="resultword">용어 자리</a></dt>
-                        <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
-                    </dl>
-                  </li>
-                </ul>
-          </div>
+        <div>
+            <h4>검색 결과</h4>
+            <hr class="boldhr"/>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <dl>
+                <dt><a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>용어 자리</h5></a></dt>
+                <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
+            </dl>
+          </li>
+          <li class="list-group-item">
+            <dl>
+                <dt><a class="resultword">용어 자리</a></dt>
+                <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
+            </dl>
+          </li>
+          <li class="list-group-item">
+            <dl>
+                <dt><a class="resultword">용어 자리</a></dt>
+                <dd class="resultpreview">용어 설명 미리보기 : 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다.</dd>
+            </dl>
+          </li>
+        </ul>
 <!-- Modal1 -->
         <div class="modal fade" id="ssssmodal" role="dialog">
             <div class="modal-dialog">

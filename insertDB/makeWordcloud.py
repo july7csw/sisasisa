@@ -13,14 +13,17 @@ from sisasisa.models import Words
 
 word = "시사용어 받아오기"
 
+
 def findWordId(keyword):
     wordId = Words.objects.get(word=keyword).id
     return wordId
 
+
 assWordList, weightList = [], []
 
-def findAssoAndWeight(wordId):
-    data = list(Assoicated_words.objects.filter(wordId=wordId).values())
+
+def findAssoAndWeight():
+    data = list(Assoicated_words.objects.filter(wordId='804').values())
     for i in range(0, len(data)):
         weight = data[i]['weight']
         weight = float(weight)
@@ -29,12 +32,14 @@ def findAssoAndWeight(wordId):
     df = pd.DataFrame({'word': assWordList, 'weight': weightList})
     return df
 
+
 # 연관어->데이터프레임
 a = {}
 wordId = findWordId(word)
-data = findAssoAndWeight(wordId)
+data = findAssoAndWeight()
 for k in range(0, len(data)):
     a.setdefault(data['word'][k], data['weight'][k])
+print(a)
 
 if sys.platform in ["win32", "win64"]:
     font_name = "malgun gothic"
