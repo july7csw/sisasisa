@@ -20,5 +20,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('sisasisa.urls')),
     path('accounts/', include('allauth.urls')),
-
 ]

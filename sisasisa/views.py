@@ -7,7 +7,6 @@ import pandas as pd
 
 # Create your views here.
 
-
 def news_infos(request):
     return render(request, 'news_infos/index.html', {})
 
@@ -42,7 +41,6 @@ def scrap(request):
         word = Words.objects.get(id=i)
         words.append(word.word)
     return render(request, 'words/scrap.html', {'scrapList': words})
-
 
 def login(request):
     return render(request, 'member/login.html', {})

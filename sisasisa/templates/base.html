@@ -7,9 +7,14 @@
     <title>SISASISA</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <style type="text/css">
+      a, a:focus, a:hover{
+        color: #9d9d9d;
+        text-decoration: none;
+      }
       .navbar-toggle{
         float: left;
         margin-left: 3%;
@@ -27,18 +32,32 @@
         outline: 0;
       }
       .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-        border-color: #fff;
+        border-color: transparent;
       }
-      .nav-tabs > li {
+      .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+        max-width: 600px;
+      }
+      .navbar-form{
+        padding: 0;
+        margin-right: 1%;
+        box-shadow: none;
+        border: none;
+      }
+      .nav-tabs>li>a{
+        color: #fff;
+      }
+      .nav-tabs {
+        text-align:center;
+        border-bottom: none;
+      }
+      .nav-tabs>li {
         float:none;
         display:inline-block;
         zoom:1;
       }
-      .nav-tabs {
-        text-align:center;
-      }
       .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
         color: #2E75B6;
+        background-color: #c0fdff;
         border: 1px solid #ddd;
         border-top-color:transparent;
         border-top-style: solid;
@@ -58,6 +77,29 @@
         border-image-outset: initial;
         border-image-repeat: initial;
       }
+      .nav>li>a:focus, .nav>li>a:hover {
+        background-color: transparent;
+       }
+      .nav-tabs>li>a:hover {
+        border-color: transparent;
+      }
+      #ssssmenu>ul{
+        margin-left: 30px;
+        text-align: center;
+      }
+
+      #ssssmenu>ul>li{
+        width: 90px;
+      }
+      #ssssmenu>ul>li:first-child{
+        border-left: none;
+      }
+
+      #ssssmenu>ul>li>a{
+        color: #2E75B6;
+        font-size: 16px;
+        font-weight: 500;
+      }
       .bgcolorskyblue{
         background-color: #c0fdff;
       }
@@ -65,7 +107,7 @@
         padding-top: 50px;
       }
       .maincontent{
-        padding-top: 30px;
+        padding-top: 20px;
         color: #9d9d9d;
       }
       h4{
@@ -76,19 +118,10 @@
         margin-top: 5px;
         margin-bottom: 5px;
       }
-      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-        background-color: #c0fdff;
-      }
-      a{
-        color: #fff;
-      }
       .boldhr{
         border: 0;
         height: 2px;
         background: #ccc;
-      }
-      #ssssmenu{
-        text-align: right;
       }
       .btn-link {
         color: #9d9d9d;
@@ -98,36 +131,118 @@
         text-decoration: none;
         background-color: transparent;
       }
-      .sssssearch {
-        width: 30%;
-        display: relative;
+      .ssssserchbox, .ssssserchbox>div, .ssssserchbox>div>input, .ssssserchbox>div>div>button, .ssssserchbox>div>div>button>i{
+        background-color: transparent;
       }
-
+      .ssssserchbox>div>input{
+        border: none;
+        border-radius: 0;
+        <!--border-bottom: 1px solid #ccc;-->
+        -webkit-box-shadow: 0;
+        box-shadow: none;
+      }
+      .ssssserchbox>div>div>button{
+        border: none;
+        color: #ccc;
+      }
+      .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
+        color: #ccc;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    .removeicon{
+        font-size: 30px;
+        padding-right: 10%;
+    }
+    .list-group-item{
+        border: none;
+    }
+    .logincontent{
+        padding-top: 60px;
+        color: #9d9d9d;
+    }
+    .screen_out {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        line-height: 0;
+        text-indent: -9999px;
+    }
+    .loginset{
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        box-sizing: border-box;
+    }
+    .loginform{
+        margin: 0;
+        height: 45px;
+        line-height: 1.5;
+    }
+    .loginform>input{
+        border: none;
+        outline: 0;
+        border-radius: 0;
+        box-shadow: none;
+        height: 43px;
+        line-height: 1.5;
+    }
+    .loginset>.loginform+.loginform{
+        border-top: 1px solid #ddd;
+    }
+    .loginbtn{
+        width: 100%;
+        height: 43px;
+        border-radius: 2;
+        color: #fff;
+        background-color: #2E75B6;
+    }
+    .checkbox, .radio {
+        margin: 15px 0;
+        line-height: 1.5;
+    }
+    .naverlogin{
+        margin-top: 15px;
+    }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html"><img src="/static/logo.png" style="max-width:100px; margin:15px 3%;"></a>
+        <div class="row">
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html"><img src="/static/logo.png" style="max-width:100px; margin:15px 3%;"></a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse" id="ssssmenu">
+                  <ul class="nav navbar-nav">
+                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="#">STEADY</a></li>
+                    <li><a href="#">HOT</a></li>
+                    <li><a href="#">MY</a></li>
+                  </ul>
+                </div>
+            </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                <form action="" class="navbar-form navbar-right ssssserchbox">
+                  <div class="input-group">
+                    <input type="text" class="form-control">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+            </div>
         </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse" id="ssssmenu">
-          <ul class="nav navbar-nav">
-            <li><a href="#">메뉴1</a></li>
-            <li><a href="#">메뉴2</a></li>
-            <li><a href="#">메뉴3</a></li>
-          </ul>
-        </div>
-      </div>
     </nav>
-   <!-- nav end -->
     <div class="container-fluid">
-   <!-- tab start -->
       <div class="row bgcolorskyblue paddingtoptab">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
             <ul class="nav nav-tabs">
@@ -137,10 +252,8 @@
             </ul>
         </div>
       </div>
-   <!-- tab end -->
       {% block container %}
       {% endblock %}
-
     </div>
 </body>
 </html>

@@ -2,12 +2,50 @@
 {% block container %}
 
 <!-- contents start -->
+<script type="text/javascript">
+    $(function () {
+        $(".modaldata").click(function () {
+            var wordvalue = $(this).text();
+            var splitindex = wordvalue.indexOf(" ")
+            var onlyword = wordvalue.slice(splitindex)
+            $(".modal-header .modalword").text(onlyword);
+        })
+    });
+</script>
 <div class="row maincontent">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-lg-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
         <div class="tab-content">
           <div class="tab-pane fade" id="steady">
-            <p>STEADY TERMS</p>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h4>STEADY 시사용어</h4></th>
+                        <th style="text-align: right;">
+                            <div class="dropdown">
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">사회</a></li>
+                                <li><a href="#">경제</a></li>
+                                <li><a href="#">IT</a></li>
+                                <li><a href="#">문화</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%  for w in list %}
+                    <tr>
+                        <td colspan="2"><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{forloop.counter}}. {{ w }}</h5></a></td>
+                    </tr>
+                {% endfor %}
+                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+            </table>
           </div>
+
           <div class="tab-pane fade in active" id="hot">
             <table class="table table-hover">
                 <thead>
@@ -29,27 +67,88 @@
                 </thead>
                 <tbody>
                 {%  for w in list %}
-                    <tr><td colspan="2"><h5>{{ w }}</h5></td></tr>
+                    <tr>
+                        <td colspan="2"><h5>{{forloop.counter}}. {{ w }}</h5></td>
+                    </tr>
                 {% endfor %}
-                    <!--<tr><td colspan="2"><h5>1. 구상권</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>2. 용적률</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>3. 공공재</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>4. 주택임대차보호법</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>5. 종합부동산세</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>6. 소득세</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>7. 뉴노멀</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>8. 임대료</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>9. 셧다운</h5></td></tr>-->
-                    <!--<tr><td colspan="2"><h5>10. 기본소득</h5></td></tr>-->
                     <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
                 </tbody>
             </table>
           </div>
           <div class="tab-pane fade" id="my">
-          {%  for w in list %}
-              <h5>{{ w }}</h5>
-          {% endfor %}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width: 80%;"><h4>MY 시사용어</h4></th>
+                        <th style="text-align: right; width: auto;">
+                            <div class="dropdown">
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">정렬 선택
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">최신순</a></li>
+                                <li><a href="#">가나다순</a></li>
+                              </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                {%  for w in list %}
+                    <tr>
+                        <td><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{forloop.counter}}. {{ w }}</h5></a></td>
+                        <td style="text-align: right;"><a class="modaldata" data-toggle="modal" data-target="#removemodal" data-id="시사용어 삭제"><i class="material-icons removeicon">remove</i></a></td>
+                    </tr>
+                {% endfor %}
+                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+            </table>
           </div>
+        </div>
+<!-- Modal1 -->
+        <div class="modal fade" id="ssssmodal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title modalword" id="wordvalue"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            뜻이 들어갈 부분입니다. <br> 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다. 즉, 개인이 웹에 접속해서 포토샵, 오피스 같은 프로그램을 작업할 수 있고 그 작업에 대한 저장도 웹에서 하게 된다. 결국 가상의 공간에 하나의 서버(컴퓨터)만을 놓고 이 하나의 컴퓨터를 통해 여러 사람이 개인의 작업을 할 수 있는 것이다. 클라우드라는 용어는 1990년대에 거대한 규모의 ATM을 지칭하는 데서 쓰이다가, 소비자 중심의 웹 기반이 형성되는 21세기에 들어서야 클라우드 컴퓨팅이라는 용어가 널리 퍼지기 시작했다.
+                        </p>
+                        <p>
+                            <b>연관어</b><br>
+                            워드클라우드가 들어갈 부분입니다.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+<!-- Modal2 -->
+        <div class="modal fade" id="removemodal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">시사용어 삭제</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            스크랩 목록에서 시사용어를 삭제하시겠습니까?
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">확인</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
