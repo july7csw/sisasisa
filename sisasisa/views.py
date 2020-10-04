@@ -3,6 +3,7 @@ from .models import Words
 from .models import Amounted_mentions
 from .models import User_scrap
 import pandas as pd
+import insertDB.rank10 as rank
 
 
 # Create your views here.
@@ -17,13 +18,7 @@ def word_list(request):
 
 
 def hot_word(request):
-    hits = Amounted_mentions.objects.filter(label='202008').order_by('-hits')[:10]
-    wordIdList = [w.wordId for w in hits]
-    words = []
-    for i in wordIdList:
-        word = Words.objects.get(id=i)
-        words.append(word.word)
-    # return render(request, 'words/hot_word.html', {'list': words})
+    words = rank.returnWord()
     return render(request, 'news_infos/index.html', {'list': words})
 
 
