@@ -1,11 +1,11 @@
 from django.contrib.auth import (logout as django_logout, get_user_model)
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 
 import insertDB.rank10 as rank
 from .models import User_scrap
 from .models import Words
+from user.models import User
 
 
 # Create your views here.
@@ -20,7 +20,7 @@ def steady(request):
 
 
 def hot(request):
-    words = rank.returnWord()
+    words = rank.returnHotWord()
     return render(request, 'news_infos/hot.html', {'list': words})
 
 
@@ -65,11 +65,11 @@ def scrap(request):
             words.append(word.word)
         return render(request, 'words/scrap.html', {'scrapList': words})
     else:
-        return render(request, 'member/login.html')
+        return render(request, 'member/../user/templates/user/login.html')
 
 
 def login(request):
-    return render(request, 'member/login.html', {})
+    return render(request, 'member/../user/templates/user/login.html', {})
 
 
 def logout(request):
@@ -81,9 +81,8 @@ def mypage(request):
     this_user = request.user
     message = "로그인이 필요한 페이지입니다."
     if this_user.is_authenticated:
-        user = User.objects.get(user=this_user)
-        # print(user)
+        print(request.user.email)
         user = "user 데이터를 가져온 뒤 처리"
         return render(request, 'member/mypage.html', {'user': user})
     else:
-        return render(request, 'member/login.html', {'msg': message})
+        return redirect('/user/login')

@@ -1,23 +1,6 @@
 from django.db import models
 
 
-# class USER(models.Model):
-#     username = models.CharField(max_length=50, null=True)
-#     email = models.CharField(max_length=100, null=True)
-#     nickname = models.CharField(max_length=50, null=True)
-#     sns_id = models.CharField(max_length=255, null=True)
-#     sns_type = models.CharField(max_length=10)
-#     sns_profile = models.CharField(max_length=255)
-#     create_date = models.DateTimeField(blank=True, null=True)
-#     modify_date = models.DateTimeField(blank=True, null=True)
-#
-#     def __str__(self):
-#         return self.username
-#
-#     def publish(self):
-#         self.save()
-
-
 class News_infos(models.Model):
     wordId = models.CharField(max_length=200)
     news_id = models.CharField(max_length=100)
