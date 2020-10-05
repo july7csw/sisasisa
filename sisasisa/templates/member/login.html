@@ -7,6 +7,14 @@
 <!-- contents start -->
 <script type="text/javascript">
     $(function () {
+        $('#hot_li').removeClass("active");
+        $('#my_li').addClass("active");
+        $(".modaldata").click(function () {
+            var wordvalue = $(this).text();
+            var splitindex = wordvalue.indexOf(" ")
+            var onlyword = wordvalue.slice(splitindex)
+            $(".modal-header .modalword").text(onlyword);
+        })
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(" ")
@@ -46,8 +54,9 @@
   <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4"></div>
 </div>
 
+<script src="{% static 'user/js/social_login.js' %}"></script>
 <!-- contents end -->
 {% endblock %}
 
-<script src="{% static 'user/js/social_login.js' %}"></script>
+
 

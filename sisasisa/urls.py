@@ -13,4 +13,5 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('hot', views.hot_word, name='hot'),
     path('mypage', views.mypage, name='mypage'),
+    path('search', views.search, name='search')
 ]

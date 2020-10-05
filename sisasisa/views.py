@@ -1,6 +1,7 @@
 from django.contrib.auth import (logout as django_logout, get_user_model)
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.db.models import Q
 
 
 import insertDB.rank10 as rank
@@ -13,16 +14,13 @@ from .models import Words
 def index(request):
     return render(request, 'news_infos/index.html')
 
-
 def steady(request):
     words = rank.returnSteadyWord()
     return render(request, 'news_infos/steady.html', {'words': words})
 
-
 def hot(request):
     words = rank.returnWord()
     return render(request, 'news_infos/hot.html', {'list': words})
-
 
 def check_login(request):
     now_user = request.user
@@ -31,7 +29,6 @@ def check_login(request):
     else:
         logincheck = False
     return logincheck
-
 
 def news_infos(request):
     return render(request, 'news_infos/index.html')
@@ -87,3 +84,24 @@ def mypage(request):
         return render(request, 'member/mypage.html', {'user': user})
     else:
         return render(request, 'member/login.html', {'msg': message})
+
+def search(request):
+    keyword = request.GET.get('keyword', '')
+    words = Words.objects.all()
+
+    if keyword:
+        inWord = words.filter(word__icontains=keyword)
+        inMeaning = words.filter(
+            Q(meaning__icontains=keyword) & ~Q(word__icontains=keyword)
+        )
+        meaningList = [im.meaning for im in inMeaning]
+
+        inMeaning_mean = []
+        for ml in meaningList:
+            keywordIndex = ml.find(keyword)
+            startIndex = ml[:keywordIndex].rfind(".")
+            previewText = ml[startIndex+2:]
+            inMeaning_mean.append(previewText)
+        inMeaning_word = [im.word for im in inMeaning]
+        meaningResult = [ x for x in zip(inMeaning_word, inMeaning_mean)]
+    return render(request, 'news_infos/search.html', {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
