@@ -14,10 +14,14 @@
         })
     });
 </script>
+<div class="message">
+    {{ msg }}
+</div>
 <div class="row logincontent">
   <div class="col-xs-1 col-sm-4 col-md-4 col-lg-4"></div>
   <div class="col-xs-10 col-sm-4 col-md-4 col-lg-4">
     <form action="#">
+      <input type="hidden" name="next" value="{{ next }}">
       <div class="loginset">
           <div class="form-group loginform">
             <label for="memberID" class="screen_out">Email address:</label>
