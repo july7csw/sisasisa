@@ -36,7 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {%  for w in list %}
+                {%  for w in steadyWords %}
                     <tr>
                         <td colspan="2"><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{forloop.counter}}. {{ w }}</h5></a></td>
                     </tr>
@@ -66,7 +66,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                {%  for w in list %}
+                {%  for w in hotWords %}
                     <tr>
                         <td colspan="2"><h5>{{forloop.counter}}. {{ w }}</h5></td>
                     </tr>

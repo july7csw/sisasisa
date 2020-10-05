@@ -3,11 +3,12 @@ import os
 import django
 import math
 
+from insertDB.searchDB import findWordName
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
 
 from sisasisa.models import Amounted_mentions
-from sisasisa.models import Words
 
 amountList = list(Amounted_mentions.objects.filter(label__startswith='2019').values())
 
@@ -86,12 +87,6 @@ rank10 = rank10.head(10)
 
 wordIdList2 = list(rank10['wordId'])
 numList = list(rank10['202009'])
-
-
-def findWordName(wordID):
-    word = Words.objects.get(id=wordID).word
-    return word
-
 
 wordList = []
 

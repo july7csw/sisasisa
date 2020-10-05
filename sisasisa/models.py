@@ -1,6 +1,21 @@
 from django.db import models
-from django.conf import settings
-from django.utils import timezone
+
+
+# class USER(models.Model):
+#     username = models.CharField(max_length=50, null=True)
+#     email = models.CharField(max_length=100, null=True)
+#     nickname = models.CharField(max_length=50, null=True)
+#     sns_id = models.CharField(max_length=255, null=True)
+#     sns_type = models.CharField(max_length=10)
+#     sns_profile = models.CharField(max_length=255)
+#     create_date = models.DateTimeField(blank=True, null=True)
+#     modify_date = models.DateTimeField(blank=True, null=True)
+#
+#     def __str__(self):
+#         return self.username
+#
+#     def publish(self):
+#         self.save()
 
 
 class News_infos(models.Model):
@@ -27,7 +42,6 @@ class Words(models.Model):
     #
     # def publish(self):
     #     self.save()
-
 
 
 class Assoicated_words(models.Model):
@@ -63,4 +77,3 @@ class User_scrap(models.Model):
 
     def publish(self):
         self.save()
-

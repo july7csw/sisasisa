@@ -1,11 +1,11 @@
+from django.contrib.auth import (logout as django_logout, get_user_model)
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Words
-from .models import Amounted_mentions
-from .models import User_scrap
-import pandas as pd
-from django.contrib.auth import (authenticate, login as django_login, logout as django_logout)
+
+
 import insertDB.rank10 as rank
+from .models import User_scrap
+from .models import Words
 
 
 # Create your views here.
@@ -15,13 +15,8 @@ def index(request):
 
 
 def steady(request):
-    # hits = Amounted_mentions.objects.filter(label='202008').order_by('-hits')[:10]
-    # wordIdList = [w.wordId for w in hits]
-    # words = []
-    # for i in wordIdList:
-    #     word = Words.objects.get(id=i)
-    #     words.append(word.word)
-    return render(request, 'news_infos/search.html')
+    words = rank.returnSteadyWord()
+    return render(request, 'news_infos/steady.html', {'words': words})
 
 
 def hot(request):
@@ -48,8 +43,9 @@ def word_list(request):
 
 
 def hot_word(request):
-    words = rank.returnWord()
-    return render(request, 'news_infos/index.html', {'list': words})
+    hotWords = rank.returnHotWord()
+    steadyWords = rank.returnSteadyWord()
+    return render(request, 'news_infos/index.html', {'steadyWords': steadyWords, 'hotWords': hotWords})
 
 
 def detail_word(request):
@@ -85,7 +81,7 @@ def mypage(request):
     this_user = request.user
     message = "로그인이 필요한 페이지입니다."
     if this_user.is_authenticated:
-        # user = User.objects.get(user=this_user)
+        user = User.objects.get(user=this_user)
         # print(user)
         user = "user 데이터를 가져온 뒤 처리"
         return render(request, 'member/mypage.html', {'user': user})

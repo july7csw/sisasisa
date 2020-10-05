@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block container %}
 {%  load socialaccount %}
 {%  providers_media_js %}
@@ -47,3 +48,6 @@
 
 <!-- contents end -->
 {% endblock %}
+
+<script src="{% static 'user/js/social_login.js' %}"></script>
+
