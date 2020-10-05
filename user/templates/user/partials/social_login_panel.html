@@ -1,0 +1,25 @@
+{% load socialaccount %}
+{% load static %}
+
+{% static 'user/img/naver_login2.PNG' as naver_login %}
+{% static 'user/img/google_login.png' as gg_btn %}
+
+<div class="panel panel-default user-panel">
+    <div class="panel-heading">
+        소셜로그인
+    </div>
+    <div class="panel-body text-center">
+        <div class="pull-left">
+            <a href="{% provider_login_url 'google' %}">
+                <img src="{{ gg_btn }}" style="width: 50%;">
+            </a>
+        </div>
+        <div class="pull-right">
+            <a href="#" onclick="naverLogin()">
+                <img src="{{ naver_login }}" style="width: 20%;">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'user/js/social_login.js' %}"></script>
