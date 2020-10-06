@@ -1,4 +1,5 @@
 from django.contrib.auth import (logout as django_logout, get_user_model)
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.db.models import Q
 
@@ -69,9 +70,10 @@ def login(request):
     return render(request, 'member/../user/templates/user/login.html', {})
 
 
-def logout(request):
-    django_logout(request)
-    return redirect('index')
+# def logout(request):
+#     return HttpResponseRedirect(request.POST['path'])
+    # django_logout(request)
+    # return redirect('index')
 
 
 def mypage(request):
@@ -82,29 +84,32 @@ def mypage(request):
         user = "user 데이터를 가져온 뒤 처리"
         return render(request, 'member/mypage.html', {'user': user})
     else:
-<<<<<<< HEAD
-        return render(request, 'member/login.html', {'msg': message})
+        return redirect('user/login')
+
+        # return render(request, 'member/login.html', {'msg': message})
 
 def search(request):
     keyword = request.GET.get('keyword', '')
     words = Words.objects.all()
-
-    if keyword:
+    if not keyword:
+        keyword = """' '"""
+        return render(request, 'news_infos/search.html', {'notWord': keyword})
+    else:
         inWord = words.filter(word__icontains=keyword)
         inMeaning = words.filter(
             Q(meaning__icontains=keyword) & ~Q(word__icontains=keyword)
         )
-        meaningList = [im.meaning for im in inMeaning]
+        if inWord.exists() is False and inMeaning.exists() is False:
+            return render(request, 'news_infos/search.html', {'notWord': keyword})
+        else:
+            meaningList = [im.meaning for im in inMeaning]
+            inMeaning_mean = []
+            for ml in meaningList:
+                keywordIndex = ml.find(keyword)
+                startIndex = ml[:keywordIndex].rfind(".")
+                previewText = ml[startIndex+2:]
+                inMeaning_mean.append(previewText)
+            inMeaning_word = [im.word for im in inMeaning]
+            meaningResult = [ x for x in zip(inMeaning_word, inMeaning_mean)]
+            return render(request, 'news_infos/search.html', {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
 
-        inMeaning_mean = []
-        for ml in meaningList:
-            keywordIndex = ml.find(keyword)
-            startIndex = ml[:keywordIndex].rfind(".")
-            previewText = ml[startIndex+2:]
-            inMeaning_mean.append(previewText)
-        inMeaning_word = [im.word for im in inMeaning]
-        meaningResult = [ x for x in zip(inMeaning_word, inMeaning_mean)]
-    return render(request, 'news_infos/search.html', {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
-=======
-        return redirect('/user/login')
->>>>>>> f88f6ca12574e6cfa017e2d2dc55daddd7e570f0
