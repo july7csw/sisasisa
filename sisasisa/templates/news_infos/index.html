@@ -6,9 +6,15 @@
     $(function () {
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
-            var splitindex = wordvalue.indexOf(" ")
-            var onlyword = wordvalue.slice(splitindex)
-            $(".modal-header .modalword").text(onlyword);
+            var splitindex = wordvalue.indexOf(".")
+            var onlyword = wordvalue.slice(splitindex+1)
+            $(".modal-header .modalword").text(word);
+            var word = onlyword.trim()
+            alert(word)
+            var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
+            var img = document.getElementById('wordCloud');
+
+            img.setAttribute('src',filepath)
         })
     });
 </script>
@@ -122,7 +128,8 @@
                         </p>
                         <p>
                             <b>연관어</b><br>
-                            워드클라우드가 들어갈 부분입니다.
+                            <img id="wordCloud" style="width: 100%;">
+
                         </p>
                     </div>
                     <div class="modal-footer">

@@ -16,9 +16,11 @@ wb = load_workbook(filename)
 for sn in wb.sheetnames:
     sheetList.append(sn)
 
+
 def findWordId(keyword):
     wordId = Words.objects.get(word=keyword).id
     return wordId
+
 
 def insertDB(word):
     data = pd.read_excel(filename, sheet_name=word)
@@ -37,6 +39,7 @@ def insertDB(word):
             weight=weight
         )
     return None
+
 
 for sl in sheetList:
     insertDB(sl)

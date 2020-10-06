@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 
 import insertDB.rank10 as rank
+import insertDB.makeWordcloud as mc
 from .models import User_scrap
 from .models import Words
-from user.models import User
 
 
 # Create your views here.
@@ -91,7 +91,7 @@ def mypage(request):
 def search(request):
     keyword = request.GET.get('keyword', '')
     words = Words.objects.all()
-
+    mc.makeWordcloud(keyword)
     if keyword:
         inWord = words.filter(word__icontains=keyword)
         inMeaning = words.filter(
@@ -107,5 +107,6 @@ def search(request):
             inMeaning_mean.append(previewText)
         inMeaning_word = [im.word for im in inMeaning]
         meaningResult = [x for x in zip(inMeaning_word, inMeaning_mean)]
+
     return render(request, 'news_infos/search.html',
                   {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})

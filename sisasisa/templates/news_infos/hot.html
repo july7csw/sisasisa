@@ -9,9 +9,14 @@
 
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
-            var splitindex = wordvalue.indexOf(" ")
-            var onlyword = wordvalue.slice(splitindex)
-            $(".modal-header .modalword").text(onlyword);
+            var splitindex = wordvalue.indexOf(".")
+            var onlyword = wordvalue.slice(splitindex+1)
+            $(".modal-header .modalword").text(word);
+            var word = onlyword.trim()
+            var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
+            var img = document.getElementById('wordCloud');
+
+            img.setAttribute('src',filepath)
         })
     });
 </script>
@@ -40,7 +45,11 @@
                 <tbody>
                 {%  for w in list %}
                     <tr>
-                        <td colspan="2"><h5>{{forloop.counter}}. {{ w }}</h5></td>
+                        <td colspan="2">
+                            <a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest">
+                                <h5>{{forloop.counter}}. {{ w }}</h5>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
                     <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
@@ -64,7 +73,7 @@
                 </p>
                 <p>
                     <b>연관어</b><br>
-                    워드클라우드가 들어갈 부분입니다.
+                    <img id="wordCloud" style="width: 100%;">
                 </p>
             </div>
             <div class="modal-footer">
