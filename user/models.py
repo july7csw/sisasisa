@@ -3,6 +3,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 
 class UserManager(BaseUserManager):
@@ -47,9 +48,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['name']  # 필수입력값
 
     class Meta:
-        verbose_name = 'user'
-        verbose_name_plural = 'users'
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
         swappable = 'AUTH_USER_MODEL'
-
-    def email_user(self, subject, message, from_email=None, **kwargs):  # 이메일 발송 메소드
-        send_mail(subject, message, from_email, [self.email], **kwargs)
