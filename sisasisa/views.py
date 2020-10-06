@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 
 import insertDB.rank10 as rank
+import insertDB.searchDB as srch
 from .models import User_scrap
 from .models import Words
 from user.models import User
@@ -54,10 +55,21 @@ def detail_word(request):
     return render(request, 'words/detail_word.html', {'word': word, 'meaning': meaning})
 
 
+def insertScrap(request):
+    loginCheck = check_login(request)
+    if loginCheck is True:
+        word = request.GET.get('word', '')
+        user_Identifier = request.user.email
+        srch.insertScrap(word, user_Identifier)
+        return render(request, "words/scrap.html")
+    else:
+        return render(request, 'member/../user/templates/user/login.html')
+
+
 def scrap(request):
     logincheck = check_login(request)
     if logincheck is True:
-        list = User_scrap.objects.filter(user_Identifier=request.user)
+        list = User_scrap.objects.filter(user_Identifier=request.user.email)
         wordIdList = [w.wordId for w in list]
         words = []
         for i in wordIdList:
@@ -66,15 +78,6 @@ def scrap(request):
         return render(request, 'words/scrap.html', {'scrapList': words})
     else:
         return render(request, 'member/../user/templates/user/login.html')
-
-
-def login(request):
-    return render(request, 'member/../user/templates/user/login.html', {})
-
-
-def logout(request):
-    django_logout(request)
-    return redirect('index')
 
 
 def mypage(request):

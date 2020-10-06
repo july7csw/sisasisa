@@ -17,6 +17,19 @@ def findWordName(wordID):
     return word
 
 
+def findWordId(word):
+    wordId = Words.objects.get(word=word).id
+    return wordId
+
+
+def insertScrap(word, user_Identifier):
+    wordId = findWordId(word)
+    User_scrap.objects.create(
+        wordId = wordId,
+        user_Identifier=user_Identifier
+    )
+
+
 def amounted_mention():
     amountList = list(Amounted_mentions.objects.all().values())
     df = pd.DataFrame(columns=['wordId', 'Amount'])

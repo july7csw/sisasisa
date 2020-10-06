@@ -13,9 +13,6 @@
                {{ i }}<br/>
            {% endfor %}
        {% else %}
-           {% comment %}
-            "/accounts/naver/login/?process=login" <-네이버 로그인 직링크
-           {% endcomment %}
        <a href="{% url 'account_login' %}" class="nav-link"><img src="/static/naver_login.png" style="max-width:100px; margin:15px;"></a>
        {% endif %}
     </li>
