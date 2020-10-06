@@ -1,8 +1,6 @@
 from pathlib import Path
-
 import matplotlib.pyplot as plt
 import sys
-
 from PIL import ImageFont
 from wordcloud import WordCloud
 import pandas as pd
