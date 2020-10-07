@@ -86,7 +86,7 @@ def search(request):
 #     message = "로그인이 필요한 페이지입니다."
 #     if this_user.is_authenticated:
 #         print(request.user.email)
-#         user = "user 데이터를 가져온 뒤 처리"
+#         user = "user 데이터를 가져온 뒤 처리"gjr
 #         return render(request, 'member/mypage.html', {'user': user})
 #     else:
 #         return redirect('user/login')
