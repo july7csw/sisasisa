@@ -35,7 +35,6 @@ def insertScrap(word, user_Identifier):
         user_Identifier=user_Identifier
     )
 
-
 def amounted_mention():
     amountList = list(Amounted_mentions.objects.all().values())
     df = pd.DataFrame(columns=['wordId', 'Amount'])
@@ -79,3 +78,8 @@ def amounted_mention():
 
 
 amounted_mention()
+
+def deleteScrap(word, user_Identifier):
+    wordId = findWordId(word)
+    deleteWord = User_scrap.objects.get(wordId=wordId)
+    deleteWord.delete()
