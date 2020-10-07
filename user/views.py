@@ -57,3 +57,7 @@ class SocialLoginCallbackView(NaverLoginMixin, View):
     def set_session(self, **kwargs):
         for key, value in kwargs.items():
             self.request.session[key] = value
+
+
+# def logout(request): ###로그아웃 처리 필요
+#     return HttpResponseRedirect(request.POST['path'])

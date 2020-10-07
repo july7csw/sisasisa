@@ -16,7 +16,9 @@
 <div class="row maincontent">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div>
-{% if keyword %}
+{% if notWord %}
+            <h4>{{ notWord }}에 대한 검색결과가 없습니다.</h4>
+{% else %}
             <h4>{{ keyword }} 검색 결과</h4>
 {% endif %}
             <hr class="boldhr"/>

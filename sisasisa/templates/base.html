@@ -19,7 +19,6 @@
                 e.preventDefault();
             });
         });
-
     </script>
 
     <style type="text/css">
@@ -273,6 +272,7 @@
             </div>
         </div>
     </nav>
+    <input type="hidden" name="path" value="{{request.path}}"/>
     <div class="container-fluid">
       <div class="row bgcolorskyblue paddingtoptab">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
@@ -283,7 +283,7 @@
             </ul>
         </div>
       </div>
-      {% block container %}s
+      {% block container %}
       {% endblock %}
     </div>
 </body>
