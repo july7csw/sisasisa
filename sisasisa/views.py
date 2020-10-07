@@ -1,12 +1,14 @@
-from django.contrib.auth import (logout as django_logout, get_user_model)
-from django.http import HttpResponseRedirect
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import Q
-
 import insertDB.rank10 as rank
+import insertDB.searchDB as srch
 import insertDB.makeWordcloud as mc
 from .models import User_scrap
 from .models import Words
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -39,16 +41,47 @@ def detail_word(request):
 def login(request):
     return render(request, 'member/../user/templates/user/login.html', {})
 
+def insertScrap(request):
+    loginCheck = check_login(request)
+    if loginCheck is True:
+        word = request.GET.get('word', '')
+        user_Identifier = request.user.email
+        srch.insertScrap(word, user_Identifier)
+        return render(request, "words/scrap.html")
+    else:
+        return render(request, 'member/../user/templates/user/login.html')
+
 def myscrap(request):
     logincheck = check_login(request)
     if logincheck is True:
-        list = User_scrap.objects.filter(user_Identifier=request.user)
+        list = User_scrap.objects.filter(user_Identifier=request.user.email)
         wordIdList = [w.wordId for w in list]
         words = []
         for i in wordIdList:
             word = Words.objects.get(id=i)
             words.append(word.word)
         return render(request, 'news_infos/myscrap.html', {'scrapList': words})
+    else:
+        return render(request, 'member/../user/templates/user/login.html')
+
+
+def login(request):
+    return render(request, 'member/../user/templates/user/login.html', {})
+
+
+# def logout(request):
+#     return HttpResponseRedirect(request.POST['path'])
+# django_logout(request)
+# return redirect('index')
+
+
+def mypage(request):
+    this_user = request.user
+    message = "로그인이 필요한 페이지입니다."
+    if this_user.is_authenticated:
+        print(request.user.email)
+        user = "user 데이터를 가져온 뒤 처리"
+        return render(request, 'member/mypage.html', {'user': user})
     else:
         return redirect('user/login')
 
@@ -73,7 +106,7 @@ def search(request):
             for ml in meaningList:
                 keywordIndex = ml.find(keyword)
                 startIndex = ml[:keywordIndex].rfind(".")
-                previewText = ml[startIndex+2:]
+                previewText = ml[startIndex + 2:]
                 inMeaning_mean.append(previewText)
             inMeaning_word = [im.word for im in inMeaning]
             meaningResult = [ x for x in zip(inMeaning_word, inMeaning_mean)]
@@ -90,3 +123,13 @@ def search(request):
 #         return render(request, 'member/mypage.html', {'user': user})
 #     else:
 #         return redirect('user/login')
+
+@csrf_exempt
+def findMeaning(request):
+    word = request.POST.get('word')
+    print(word)
+    wordId = srch.findWordId(word)
+    meaning = srch.findMeaning(wordId)
+    data = {'word': meaning}
+    return HttpResponse(json.dumps(data), content_type='application/json')
+

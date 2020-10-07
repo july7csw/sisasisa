@@ -12,9 +12,28 @@ from sisasisa.models import Assoicated_words
 from sisasisa.models import User_scrap
 
 
+def findMeaning(wordId):
+    data = Words.objects.filter(id=wordId).values()
+    meaning = (data[0]['meaning'])
+    return meaning
+
+
 def findWordName(wordID):
     word = Words.objects.get(id=wordID).word
     return word
+
+
+def findWordId(word):
+    wordId = Words.objects.get(word=word).id
+    return wordId
+
+
+def insertScrap(word, user_Identifier):
+    wordId = findWordId(word)
+    User_scrap.objects.create(
+        wordId = wordId,
+        user_Identifier=user_Identifier
+    )
 
 
 def amounted_mention():
