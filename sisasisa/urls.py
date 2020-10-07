@@ -12,5 +12,6 @@ urlpatterns = [
     path('insertScrap', views.insertScrap, name='insertScrap'),
     path('hot', views.hot_word, name='hot'),
     path('mypage', views.mypage, name='mypage'),
-    path('search', views.search, name='search')
+    path('search', views.search, name='search'),
+    path('findMeaning', views.findMeaning, name='findMeaning'),
 ]

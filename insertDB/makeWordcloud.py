@@ -1,27 +1,15 @@
 from pathlib import Path
 import matplotlib.pyplot as plt
-import sys
-from PIL import ImageFont
 from wordcloud import WordCloud
 import pandas as pd
 import os
 import django
+import insertDB.searchDB as srch
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
 
 from sisasisa.models import Assoicated_words
-from sisasisa.models import Words
-
-
-def findWordName(wordId):
-    word = Words.objects.get(id=wordId).word
-    return word
-
-
-def findWordId(keyword):
-    wordId = Words.objects.get(word=keyword).id
-    return wordId
 
 
 def findAssoAndWeight(wordId):
@@ -39,7 +27,7 @@ def findAssoAndWeight(wordId):
 def makeWordcloud(wordId):
     a = {}
     filePath = str(Path(__file__).parent.parent) + "\\sisasisa\\static\\wordCloud\\"
-    word = findWordName(wordId)
+    word = srch.findWordName(wordId)
     data = findAssoAndWeight(wordId)
     if len(data) > 0:
         for k in range(0, len(data)):

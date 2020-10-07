@@ -1,14 +1,14 @@
-from django.contrib.auth import (logout as django_logout, get_user_model)
-from django.http import HttpResponseRedirect
+import json
+
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import Q
-
 import insertDB.rank10 as rank
 import insertDB.searchDB as srch
 import insertDB.makeWordcloud as mc
 from .models import User_scrap
 from .models import Words
-
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -87,8 +87,8 @@ def login(request):
 
 # def logout(request):
 #     return HttpResponseRedirect(request.POST['path'])
-    # django_logout(request)
-    # return redirect('index')
+# django_logout(request)
+# return redirect('index')
 
 
 def mypage(request):
@@ -123,9 +123,19 @@ def search(request):
             for ml in meaningList:
                 keywordIndex = ml.find(keyword)
                 startIndex = ml[:keywordIndex].rfind(".")
-                previewText = ml[startIndex+2:]
+                previewText = ml[startIndex + 2:]
                 inMeaning_mean.append(previewText)
             inMeaning_word = [im.word for im in inMeaning]
-            meaningResult = [ x for x in zip(inMeaning_word, inMeaning_mean)]
-            return render(request, 'news_infos/search.html', {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
+            meaningResult = [x for x in zip(inMeaning_word, inMeaning_mean)]
+            return render(request, 'news_infos/search.html',
+                          {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
 
+
+@csrf_exempt
+def findMeaning(request):
+    word = request.POST.get('word')
+    print(word)
+    wordId = srch.findWordId(word)
+    meaning = srch.findMeaning(wordId)
+    data = {'word': meaning}
+    return HttpResponse(json.dumps(data), content_type='application/json')

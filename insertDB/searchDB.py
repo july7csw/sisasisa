@@ -12,6 +12,12 @@ from sisasisa.models import Assoicated_words
 from sisasisa.models import User_scrap
 
 
+def findMeaning(wordId):
+    data = Words.objects.filter(id=wordId).values()
+    meaning = (data[0]['meaning'])
+    return meaning
+
+
 def findWordName(wordID):
     word = Words.objects.get(id=wordID).word
     return word
