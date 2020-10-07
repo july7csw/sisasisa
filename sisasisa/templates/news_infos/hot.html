@@ -16,7 +16,6 @@
             var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
             var img = document.getElementById('wordCloud');
             img.setAttribute('src',filepath)
-            {#alert(word)#}
             $.ajax({
                 url:'/findMeaning',
                 method :'POST',
