@@ -12,6 +12,15 @@ from sisasisa.models import Assoicated_words
 from sisasisa.models import User_scrap
 
 
+def findScrapList(word, user_Identifier):
+    print(word, "데이터 찾기 실행")
+    wordId = findWordId(word)
+    data = User_scrap.objects.filter(wordId=wordId, user_Identifier=user_Identifier).values()
+    if data.exists():
+        return True
+    return False
+
+
 def findMeaning(wordId):
     data = Words.objects.filter(id=wordId).values()
     meaning = (data[0]['meaning'])
@@ -29,11 +38,13 @@ def findWordId(word):
 
 
 def insertScrap(word, user_Identifier):
+    print(word, "데이터 넣기 실행")
     wordId = findWordId(word)
     User_scrap.objects.create(
-        wordId = wordId,
+        wordId=wordId,
         user_Identifier=user_Identifier
     )
+
 
 def amounted_mention():
     amountList = list(Amounted_mentions.objects.all().values())
@@ -76,8 +87,6 @@ def amounted_mention():
     writer.save()
     writer.close()
 
-
-amounted_mention()
 
 def deleteScrap(word, user_Identifier):
     wordId = findWordId(word)
