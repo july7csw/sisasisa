@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 import insertDB.rank10 as rank
 import insertDB.searchDB as srch
-import insertDB.makeWordCloud as mc
 from .models import User_scrap
 from .models import Words
 from django.views.decorators.csrf import csrf_exempt
@@ -101,12 +100,6 @@ def login(request):
     return render(request, 'user/login.html', {})
 
 
-# def logout(request):
-#     return HttpResponseRedirect(request.POST['path'])
-# django_logout(request)
-# return redirect('index')
-
-
 def mypage(request):
     this_user = request.user
     message = "로그인이 필요한 페이지입니다."
@@ -145,16 +138,6 @@ def search(request):
             return render(request, 'news_infos/search.html',
                           {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
 
-
-# def mypage(request):
-#     this_user = request.user
-#     message = "로그인이 필요한 페이지입니다."
-#     if this_user.is_authenticated:
-#         print(request.user.email)
-#         user = "user 데이터를 가져온 뒤 처리"gjr
-#         return render(request, 'member/mypage.html', {'user': user})
-#     else:
-#         return redirect('user/login')
 
 @csrf_exempt
 def findMeaning(request):
