@@ -9,12 +9,14 @@
         $('#my_li').addClass("active");
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
+            alert(wordvalue.length)
             var splitindex = wordvalue.indexOf(" ")
             var onlyword = wordvalue.slice(splitindex)
             $(".modal-header .modalword").text(onlyword);
         })
     });
 </script>
+        <input type="hidden" id="user" value="{{ user.email }}">
 <div class="row maincontent">
     <div class="col-lg-2"></div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">

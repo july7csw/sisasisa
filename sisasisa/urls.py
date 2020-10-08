@@ -11,6 +11,7 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('insertScrap', views.insertScrap, name='insertScrap'),
     path('findMeaning', views.findMeaning, name='findMeaning'),
+    path('scrapCheck', views.scrapCheck, name='scrapCheck'),
     # path('scrap', views.scrap, name='scrap'),
     # path('login', views.login, name='login'),
     # path('logout', views.logout, name='logout'),

@@ -4,6 +4,7 @@
 <!-- contents start -->
 <script type="text/javascript">
     $(function () {
+        var user = $('#user').val()
         $('.nav-tabs').removeClass("active");
         $('#hot_li').addClass("active");
 
@@ -17,19 +18,61 @@
             var img = document.getElementById('wordCloud');
             img.setAttribute('src',filepath)
             $.ajax({
-                url:'/findMeaning',
-                method :'POST',
+                url: '/findMeaning',
+                method: 'POST',
                 data: {
                     word: word
                 },
-                success: function(data){
-                    {#alert(data['word'])#}
+                async: false,
+                success: function (data) {
                     $('#meaning').text(data['word'])
+                    if (user.length > 0) {
+                        $.ajax({
+                            url: '/scrapCheck',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            success: function (data) {
+                                msg = data['msg']
+                                if (msg === 'yes') {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star blue-star')
+                                } else {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                                }
+                            }
+                        })
+                    }
+                }
+            });
+            $('#scrap').click(function (){
+                if (user.length <= 0) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = 'user/login';
+                } else {
+                    word = $(".modal-header .modalword").text()
+                    var cls = $('#scrap').attr('class');
+                    if (cls === 'glyphicon glyphicon-star gray-star') {
+                        $.ajax({
+                            url: '/insertScrap',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star blue-star')
+                            }
+                        });
+                    } else {
+
+                    }
                 }
             })
         })
     });
 </script>
+        <input type="hidden" id="user" value="{{ user.email }}">
 <div class="row maincontent">
     <div class="col-lg-2"></div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
