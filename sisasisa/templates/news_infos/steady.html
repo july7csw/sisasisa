@@ -5,8 +5,8 @@
 <script type="text/javascript">
     $(function () {
         var user = $('#user').val()
-        $('.nav-tabs').removeClass("active");
-        $('#hot_li').addClass("active");
+        $('.nav-tabs li').removeClass("active");
+        $('#steady_li').addClass("active");
 
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
@@ -98,13 +98,10 @@
                 <tbody>
                 {%  for w in words %}
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest">
                                 <h5>{{forloop.counter}}. {{ w }}</h5>
                             </a>
-                        </td>
-                        <td style="text-align: right;">
-                            <a href="#"><span class="glyphicon glyphicon-star gray-star"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -148,11 +145,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">시사용어 삭제</h4>
+                <span class="modal-title modalword" id="deleteWord"></span>&nbsp&nbsp
             </div>
             <div class="modal-body">
                 <p>
-                    스크랩 목록에서 시사용어를 삭제하시겠습니까?
+                    스크랩 목록에서 삭제하시겠습니까?
                 </p>
             </div>
             <div class="modal-footer">

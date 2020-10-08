@@ -148,12 +148,12 @@ def findMeaning(request):
     data = {'word': meaning}
     return HttpResponse(json.dumps(data), content_type='application/json')
 
-
+@csrf_exempt
 def deleteScrap(request):
-    word = request.GET.get('word', '')
+    word = request.POST.get('word')
     user_Identifier = request.user.email
     srch.deleteScrap(word, user_Identifier)
-    return render(request, "words/scrap.html")
+    return redirect('myscrap')
 
 
 def categoryFilter(request):

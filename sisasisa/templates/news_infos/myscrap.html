@@ -5,13 +5,30 @@
 <!-- contents start -->
 <script type="text/javascript">
     $(function () {
-        $('#hot_li').removeClass("active");
+        $('.nav-tabs li').removeClass("active");
         $('#my_li').addClass("active");
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
-            var splitindex = wordvalue.indexOf(" ")
-            var onlyword = wordvalue.slice(splitindex)
-            $(".modal-header .modalword").text(onlyword);
+            $(".modal-header .modalword").text(wordvalue);
+        })
+        $(".deleteModalData").click(function(){
+            var deleteWord = $(this).parent().prev().text();
+            $(".modal-header .modalword").text(deleteWord);
+        })
+        $('#deleteScrap').click(function (){
+            $('#removemodal').modal('hide');
+            deleteWord = $("#deleteWord").text();
+            $.ajax({
+                url: '/deleteScrap',
+                method: "POST",
+                data: {
+                    word: deleteWord
+                },
+                async: false,
+                success: function (data) {
+                    window.location.href = '/myscrap';
+                }
+            });
         })
     });
 </script>
@@ -40,7 +57,7 @@
                 {%  for sl in scrapList %}
                     <tr>
                         <td><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{ sl }}</h5></a></td>
-                        <td style="text-align: right;"><a class="modaldata" data-toggle="modal" data-target="#removemodal" data-id="시사용어 삭제" href="/deleteScrap"><i class="material-icons removeicon">remove</i></a></td>
+                        <td style="text-align: right;"><a class="modaldata deleteModalData" data-toggle="modal" data-target="#removemodal" data-id="시사용어 삭제"><i class="material-icons removeicon">remove</i></a></td>
                     </tr>
                 {% endfor %}
                     <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
@@ -80,7 +97,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">시사용어 삭제</h4>
+                <span class="modal-title modalword" id="deleteWord"></span>&nbsp&nbsp
             </div>
             <div class="modal-body">
                 <p>
@@ -88,7 +105,7 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">확인</button>
+                <button type="button" class="btn btn-primary" id="deleteScrap">확인</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
             </div>
         </div>

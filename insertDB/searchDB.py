@@ -20,7 +20,6 @@ def findScrapList(word, user_Identifier):
         return True
     return False
 
-
 def findMeaning(wordId):
     data = Words.objects.filter(id=wordId).values()
     meaning = (data[0]['meaning'])
@@ -87,8 +86,13 @@ def amounted_mention():
     writer.save()
     writer.close()
 
+def findScrapId(wordId, user_Identifier):
+    scrapId = User_scrap.objects.get(user_Identifier=user_Identifier, wordId=wordId).id
+    return scrapId
 
 def deleteScrap(word, user_Identifier):
     wordId = findWordId(word)
-    deleteWord = User_scrap.objects.get(wordId=wordId)
-    deleteWord.delete()
+    scrapId = findScrapId(wordId, user_Identifier)
+    deleteObject = User_scrap.objects.get(id=scrapId)
+    deleteObject.delete()
+
