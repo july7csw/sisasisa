@@ -1,5 +1,7 @@
+from pathlib import Path
 import matplotlib.pyplot as plt
 import sys
+from PIL import ImageFont
 from wordcloud import WordCloud
 import pandas as pd
 import os
@@ -11,7 +13,10 @@ django.setup()
 from sisasisa.models import Assoicated_words
 from sisasisa.models import Words
 
-word = "시사용어 받아오기"
+
+def findWordName(wordId):
+    word = Words.objects.get(id=wordId).word
+    return word
 
 
 def findWordId(keyword):
@@ -19,11 +24,9 @@ def findWordId(keyword):
     return wordId
 
 
-assWordList, weightList = [], []
-
-
-def findAssoAndWeight():
-    data = list(Assoicated_words.objects.filter(wordId='804').values())
+def findAssoAndWeight(wordId):
+    assWordList, weightList = [], []
+    data = list(Assoicated_words.objects.filter(wordId=wordId).values())
     for i in range(0, len(data)):
         weight = data[i]['weight']
         weight = float(weight)
@@ -33,30 +36,38 @@ def findAssoAndWeight():
     return df
 
 
-# 연관어->데이터프레임
-a = {}
-wordId = findWordId(word)
-data = findAssoAndWeight()
-for k in range(0, len(data)):
-    a.setdefault(data['word'][k], data['weight'][k])
-print(a)
+def makeWordcloud(wordId):
+    a = {}
+    filePath = str(Path(__file__).parent.parent) + "\\sisasisa\\static\\wordCloud\\"
+    word = findWordName(wordId)
+    data = findAssoAndWeight(wordId)
+    if len(data) > 0:
+        for k in range(0, len(data)):
+            a.setdefault(data['word'][k], data['weight'][k])
 
-if sys.platform in ["win32", "win64"]:
-    font_name = "malgun gothic"
-    font_path = "c:/Windows/Fonts/malgun.ttf"
-elif sys.platform == "darwin":
-    font_name = "AppleGothic"
-    font_path = "/Users/$USER/Library/Fonts/AppleGothic.ttf"
-    WordCloud()
+        fileName = filePath + 'wordCloud_' + str(word).strip() + '.png'
 
-wordcloud = WordCloud(font_path='NotoSansKR-Bold.otf',
-                      background_color="white",
-                      max_words=100,
-                      relative_scaling=0.3,
-                      width=800,
-                      height=400
-                      ).generate_from_frequencies(a)
-plt.figure(figsize=(15, 10))
-plt.imshow(wordcloud)
-plt.axis('off')
-plt.savefig('wordcloud.png')
+        font_path = str(Path(__file__).parent.parent) + "\\sisasisa\\static\\NotoSansKR-Bold.otf"
+
+        WordCloud()
+        wordcloud = WordCloud(font_path=font_path,
+                              background_color="white",
+                              max_words=100,
+                              relative_scaling=0.3,
+                              width=800,
+                              height=400
+                              ).generate_from_frequencies(a)
+        plt.figure(figsize=(15, 10))
+        plt.imshow(wordcloud)
+        plt.axis('off')
+        plt.savefig(fileName)
+        plt.close()
+
+
+def makeCloudAll():
+    data = list(Assoicated_words.objects.values('wordId').distinct())
+    for i in range(0, len(data)):
+        makeWordcloud(data[i]['wordId'])
+        print(i, "/", len(data))
+
+

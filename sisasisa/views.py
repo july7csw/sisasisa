@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 import insertDB.rank10 as rank
 import insertDB.searchDB as srch
-import insertDB.makeWordcloud as mc
+import insertDB.makeWordCloud as mc
 from .models import User_scrap
 from .models import Words
 from django.views.decorators.csrf import csrf_exempt
