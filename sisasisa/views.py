@@ -157,4 +157,6 @@ def deleteScrap(request):
 
 
 def categoryFilter(request):
-    return None
+    category = request.GET.get('category', '')
+    data = srch.findCategoryRank(category)
+    return render(request, 'news_infos/index.html', {''})
