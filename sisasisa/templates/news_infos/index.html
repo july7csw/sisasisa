@@ -65,8 +65,18 @@
                                 $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
                             }
                         });
-                    } else {
-
+                    } else if (cls === 'glyphicon glyphicon-star yellow-star') {
+                        $.ajax({
+                            url: '/deleteScrap',
+                            method: "POST",
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                            }
+                        });
                     }
                 }
             })

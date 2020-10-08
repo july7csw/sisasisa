@@ -91,7 +91,7 @@ def amounted_mention():
 
 def deleteScrap(word, user_Identifier):
     wordId = findWordId(word)
-    deleteWord = User_scrap.objects.get(wordId=wordId)
+    deleteWord = User_scrap.objects.get(wordId=wordId,user_Identifier=user_Identifier)
     deleteWord.delete()
 
 
@@ -127,5 +127,5 @@ def findCategoryRank2():
     print(finDf)
 
 
-findCategoryRank('사회')
-findCategoryRank2()
+# findCategoryRank('사회')
+# findCategoryRank2()

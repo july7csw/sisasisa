@@ -148,6 +148,7 @@ def findMeaning(request):
     data = {'word': meaning}
     return HttpResponse(json.dumps(data), content_type='application/json')
 
+
 @csrf_exempt
 def deleteScrap(request):
     word = request.POST.get('word')
