@@ -1,6 +1,7 @@
 import os
 import django
 import pandas as pd
+from django.db.models import Count
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
@@ -19,6 +20,7 @@ def findScrapList(word, user_Identifier):
     if data.exists():
         return True
     return False
+
 
 def findMeaning(wordId):
     data = Words.objects.filter(id=wordId).values()
@@ -86,13 +88,29 @@ def amounted_mention():
     writer.save()
     writer.close()
 
-def findScrapId(wordId, user_Identifier):
-    scrapId = User_scrap.objects.get(user_Identifier=user_Identifier, wordId=wordId).id
-    return scrapId
 
 def deleteScrap(word, user_Identifier):
     wordId = findWordId(word)
-    scrapId = findScrapId(wordId, user_Identifier)
-    deleteObject = User_scrap.objects.get(id=scrapId)
-    deleteObject.delete()
+    deleteWord = User_scrap.objects.get(wordId=wordId)
+    deleteWord.delete()
+
+
+def findCategoryRank(category):
+    newsInfo = News_infos.objects.filter(category__icontains=category).values('wordId')
+    newsInfo = newsInfo.annotate(count=Count('wordId'))
+    wordList, CntList = [], []
+    for i in range(0, len(newsInfo)):
+        wordList.append(findWordName(newsInfo[i]['wordId']))
+        CntList.append(newsInfo[i]['count'])
+    df = pd.DataFrame({'word': wordList, 'count': CntList})
+
+    df = df.sort_values(by='count', ascending=False)
+    finDf = df.head(10)
+    return finDf
+
+
+def findCategoryRank2(label):
+    newsInfo = News_infos.objects.filter(published_at__month=label).values('wordId')
+    newsInfo = newsInfo.annotate(count=Count('wordId'))
+
 
