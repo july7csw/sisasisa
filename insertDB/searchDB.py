@@ -38,7 +38,7 @@ def findWordId(word):
 
 
 def insertScrap(word, user_Identifier):
-    print(word,"데이터 넣기 실행")
+    print(word, "데이터 넣기 실행")
     wordId = findWordId(word)
     User_scrap.objects.create(
         wordId=wordId,
@@ -88,4 +88,7 @@ def amounted_mention():
     writer.close()
 
 
-amounted_mention()
+def deleteScrap(word, user_Identifier):
+    wordId = findWordId(word)
+    deleteWord = User_scrap.objects.get(wordId=wordId)
+    deleteWord.delete()

@@ -10,6 +10,7 @@ urlpatterns = [
     path('myscrap', views.myscrap, name='myscrap'),
     path('search', views.search, name='search'),
     path('insertScrap', views.insertScrap, name='insertScrap'),
+    path('deleteScrap', views.deleteScrap, name='deleteScrap'),
     path('findMeaning', views.findMeaning, name='findMeaning'),
     path('scrapCheck', views.scrapCheck, name='scrapCheck'),
 ]

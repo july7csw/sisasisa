@@ -93,7 +93,7 @@ def myscrap(request):
             words.append(word.word)
         return render(request, 'news_infos/myscrap.html', {'scrapList': words})
     else:
-        return render(request, 'user/login.html')
+        return redirect('user/login')
 
 
 def login(request):
@@ -112,6 +112,7 @@ def mypage(request):
 
 
 def search(request):
+    print("왔니?")
     keyword = request.GET.get('keyword', '')
     words = Words.objects.all()
 
@@ -146,3 +147,14 @@ def findMeaning(request):
     meaning = srch.findMeaning(wordId)
     data = {'word': meaning}
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+def deleteScrap(request):
+    word = request.GET.get('word', '')
+    user_Identifier = request.user.email
+    srch.deleteScrap(word, user_Identifier)
+    return render(request, "words/scrap.html")
+
+
+def categoryFilter(request):
+    return None
