@@ -95,6 +95,7 @@ def deleteScrap(word, user_Identifier):
     deleteWord.delete()
 
 
+# steady category
 def findCategoryRank(category):
     newsInfo = News_infos.objects.filter(category__icontains=category).values('wordId')
     newsInfo = newsInfo.annotate(count=Count('wordId'))
@@ -106,11 +107,25 @@ def findCategoryRank(category):
 
     df = df.sort_values(by='count', ascending=False)
     finDf = df.head(10)
-    return finDf
+    print(finDf)
 
 
-def findCategoryRank2(label):
-    newsInfo = News_infos.objects.filter(published_at__month=label).values('wordId')
+# hot category
+def findCategoryRank2():
+    newsInfo = News_infos.objects.filter(published_at__year='2020',
+                                         published_at__month='09',
+                                         category__icontains='사회').values('wordId')
     newsInfo = newsInfo.annotate(count=Count('wordId'))
+    wordList, CntList = [], []
+    for i in range(0, len(newsInfo)):
+        wordList.append(findWordName(newsInfo[i]['wordId']))
+        CntList.append(newsInfo[i]['count'])
+    df = pd.DataFrame({'word': wordList, 'count': CntList})
+
+    df = df.sort_values(by='count', ascending=False)
+    finDf = df.head(10)
+    print(finDf)
 
 
+findCategoryRank('사회')
+findCategoryRank2()
