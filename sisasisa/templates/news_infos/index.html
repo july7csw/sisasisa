@@ -65,8 +65,18 @@
                                 $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
                             }
                         });
-                    } else {
-
+                    } else if (cls === 'glyphicon glyphicon-star yellow-star') {
+                        $.ajax({
+                            url: '/deleteScrap',
+                            method: "POST",
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                            }
+                        });
                     }
                 }
             })
@@ -82,15 +92,15 @@
                 <thead>
                     <tr>
                         <th><h4>HOT 시사용어</h4></th>
-                        <th style="text-align: right;">
+                        <th style="width: 10%;">
                             <div class="dropdown">
                               <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
                               <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">사회</a></li>
-                                <li><a href="#">경제</a></li>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">문화</a></li>
+                              <ul class="dropdown-menu ">
+                                <li><a href="/hot?category=사회">사회</a></li>
+                                <li><a href="/hot?category=경제">경제</a></li>
+                                <li><a href="/hot?category=IT">IT</a></li>
+                                <li><a href="/hot?category=문화">문화</a></li>
                               </ul>
                             </div>
                         </th>

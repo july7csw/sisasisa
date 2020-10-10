@@ -14,6 +14,7 @@ amountList = list(Amounted_mentions.objects.filter(label__startswith='2019').val
 
 df = pd.DataFrame(columns=['wordId', '2019'])
 
+
 wordIdList, cntList = [], []
 
 for i in range(0, len(amountList)):
@@ -81,7 +82,7 @@ for i in range(0, len(labelList)):
     calcList.clear()
 
 rank10 = calcData.sort_values(by='202009', ascending=False)
-rank10 = rank10.head(10)
+rank10 = rank10.head(1000)
 
 # print(rank10)
 
@@ -96,7 +97,7 @@ for i in range(0, len(wordIdList2)):
 
 finDf = pd.DataFrame({'word': wordList, 'cnt': numList})
 
-writer = pd.ExcelWriter('202009_rank10.xlsx', engine="openpyxl")
+writer = pd.ExcelWriter('202009_rank10_f.xlsx', engine="openpyxl")
 
 finDf.to_excel(writer, sheet_name='123')
 writer.save()
