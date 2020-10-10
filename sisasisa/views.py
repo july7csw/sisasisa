@@ -16,13 +16,15 @@ def index(request):
 
 
 def steady_word(request):
-    words = rank.returnSteadyWord()
+    category = request.GET.get('category', '')
+    words = rank.returnSteadyWord(category)
     return render(request, 'news_infos/steady.html', {'words': words})
 
 
 def hot_word(request):
-    hotWords = rank.returnHotWord()
-    steadyWords = rank.returnSteadyWord()
+    category = request.GET.get('category', '')
+    hotWords = rank.returnHotWord(category)
+    steadyWords = rank.returnSteadyWord(category)
     return render(request, 'news_infos/index.html', {'steadyWords': steadyWords, 'hotWords': hotWords})
 
 
@@ -154,9 +156,3 @@ def deleteScrap(request):
     user_Identifier = request.user.email
     srch.deleteScrap(word, user_Identifier)
     return redirect('myscrap')
-
-
-def categoryFilter(request):
-    category = request.GET.get('category', '')
-    data = srch.findCategoryRank(category)
-    return render(request, 'news_infos/index.html', {''})
