@@ -10,8 +10,7 @@ urlpatterns = [
     path('myscrap', views.myscrap, name='myscrap'),
     path('search', views.search, name='search'),
     path('insertScrap', views.insertScrap, name='insertScrap'),
+    path('deleteScrap', views.deleteScrap, name='deleteScrap'),
     path('findMeaning', views.findMeaning, name='findMeaning'),
-    # path('scrap', views.scrap, name='scrap'),
-    # path('login', views.login, name='login'),
-    # path('logout', views.logout, name='logout'),
+    path('scrapCheck', views.scrapCheck, name='scrapCheck')
 ]

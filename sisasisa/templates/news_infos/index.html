@@ -5,7 +5,8 @@
 <!-- contents start -->
 <script type="text/javascript">
     $(function () {
-        $('.nav-tabs').removeClass("active");
+        var user = $('#user').val()
+        $('.nav-tabs li').removeClass("active");
         $('#hot_li').addClass("active");
 
         $(".modaldata").click(function () {
@@ -18,19 +19,71 @@
             var img = document.getElementById('wordCloud');
             img.setAttribute('src',filepath)
             $.ajax({
-                url:'/findMeaning',
-                method :'POST',
+                url: '/findMeaning',
+                method: 'POST',
                 data: {
                     word: word
                 },
-                success: function(data){
-                    {#alert(data['word'])#}
+                async: false,
+                success: function (data) {
                     $('#meaning').text(data['word'])
+                    if (user.length > 0) {
+                        $.ajax({
+                            url: '/scrapCheck',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            success: function (data) {
+                                msg = data['msg']
+                                if (msg === 'yes') {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
+                                } else {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                                }
+                            }
+                        })
+                    }
+                }
+            });
+            $('#scrap').click(function (){
+                if (user.length <= 0) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = 'user/login';
+                } else {
+                    word = $(".modal-header .modalword").text()
+                    var cls = $('#scrap').attr('class');
+                    if (cls === 'glyphicon glyphicon-star gray-star') {
+                        $.ajax({
+                            url: '/insertScrap',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
+                            }
+                        });
+                    } else if (cls === 'glyphicon glyphicon-star yellow-star') {
+                        $.ajax({
+                            url: '/deleteScrap',
+                            method: "POST",
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                            }
+                        });
+                    }
                 }
             })
         })
     });
 </script>
+    <input type="hidden" id="user" value="{{ user.email }}">
 <div class="row maincontent">
     <div class="col-lg-2"></div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
@@ -39,15 +92,15 @@
                 <thead>
                     <tr>
                         <th><h4>HOT 시사용어</h4></th>
-                        <th style="text-align: right;">
+                        <th style="width: 10%;">
                             <div class="dropdown">
                               <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
                               <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">사회</a></li>
-                                <li><a href="#">경제</a></li>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">문화</a></li>
+                              <ul class="dropdown-menu ">
+                                <li><a href="/hot?category=사회">사회</a></li>
+                                <li><a href="/hot?category=경제">경제</a></li>
+                                <li><a href="/hot?category=IT">IT</a></li>
+                                <li><a href="/hot?category=문화">문화</a></li>
                               </ul>
                             </div>
                         </th>
@@ -56,13 +109,10 @@
                 <tbody>
                 {%  for w in hotWords %}
                     <tr>
-                        <td>
+                        <td colspan="2">
                             <a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest">
                                 <h5>{{forloop.counter}}. {{ w }}</h5>
                             </a>
-                        </td>
-                        <td style="text-align: right;">
-                            <a href="#"><span class="glyphicon glyphicon-star gray-star"></span></a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -82,8 +132,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div>
                     <span class="modal-title modalword" id="wordvalue"></span>&nbsp&nbsp
-                    <a href="#"><span class="glyphicon glyphicon-star gray-star"></span></a>
-
+                    <a href="#"><span id="scrap" class="glyphicon glyphicon-star gray-star"></span></a>
                 </div>
             </div>
             <div class="modal-body">

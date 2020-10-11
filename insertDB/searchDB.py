@@ -1,6 +1,7 @@
 import os
 import django
 import pandas as pd
+from django.db.models import Count
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
@@ -10,6 +11,15 @@ from sisasisa.models import News_infos
 from sisasisa.models import Amounted_mentions
 from sisasisa.models import Assoicated_words
 from sisasisa.models import User_scrap
+
+
+def findScrapList(word, user_Identifier):
+    print(word, "데이터 찾기 실행")
+    wordId = findWordId(word)
+    data = User_scrap.objects.filter(wordId=wordId, user_Identifier=user_Identifier).values()
+    if data.exists():
+        return True
+    return False
 
 
 def findMeaning(wordId):
@@ -29,9 +39,10 @@ def findWordId(word):
 
 
 def insertScrap(word, user_Identifier):
+    print(word, "데이터 넣기 실행")
     wordId = findWordId(word)
     User_scrap.objects.create(
-        wordId = wordId,
+        wordId=wordId,
         user_Identifier=user_Identifier
     )
 
@@ -78,4 +89,29 @@ def amounted_mention():
     writer.close()
 
 
-amounted_mention()
+def deleteScrap(word, user_Identifier):
+    wordId = findWordId(word)
+    deleteWord = User_scrap.objects.get(wordId=wordId, user_Identifier=user_Identifier)
+    deleteWord.delete()
+
+
+# steady category
+def findCategoryRank(category):
+    if len(category) != 0:
+        newsInfo = News_infos.objects.filter(category__icontains=category).values('wordId')
+    else:
+        newsInfo = News_infos.objects.all().values('wordId')
+    return createCategoryDF(newsInfo)
+
+
+def createCategoryDF(newsInfo):
+    newsInfo = newsInfo.annotate(count=Count('wordId'))
+    wordList, CntList = [], []
+    for i in range(0, len(newsInfo)):
+        wordList.append(findWordName(newsInfo[i]['wordId']))
+        CntList.append(newsInfo[i]['count'])
+    df = pd.DataFrame({'word': wordList, 'count': CntList})
+
+    df = df.sort_values(by='count', ascending=False)
+    finDf = df.head(50)
+    return finDf
