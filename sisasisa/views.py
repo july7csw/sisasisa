@@ -37,6 +37,17 @@ def check_login(request):
     return logincheck
 
 
+@csrf_exempt
+def addSteady(request):
+    category = request.POST.get('category')
+    limit = request.POST.get('limit')
+    words = rank.returnSteadyWord(category, limit)
+    list = []
+    for i in range(0, len(words)):
+        list.append(words[i])
+    return HttpResponse(json.dumps(list), content_type="application/json; charset=utf-8")
+
+
 def detail_word(request):
     word = Words.objects.get(word=request.__getattribute__('word'))
     meaning = word.__getattribute__('meaning')
