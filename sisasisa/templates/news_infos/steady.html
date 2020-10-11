@@ -17,6 +17,10 @@
         var user = $('#user').val()
         var limit = 10
 
+        if (category.length !== 0) {
+            $('#categoryDefault').text(category)
+        }
+
         $('.nav-tabs li').removeClass("active");
         $('#steady_li').addClass("active");
 
