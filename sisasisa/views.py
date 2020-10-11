@@ -100,7 +100,7 @@ def deleteScrap(request):
     word = request.POST.get('word')
     user_Identifier = request.user.email
     srch.deleteScrap(word, user_Identifier)
-    return redirect('myscrap')
+    return redirect('myScrap')
 
 
 def myScrap(request):
