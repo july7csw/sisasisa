@@ -20,10 +20,12 @@ def steady_word(request):
     return render(request, 'news_infos/steady.html', {'words': words})
 
 
-def hot_word(request):
-    hotWords = rank.returnHotWord()
-    steadyWords = rank.returnSteadyWord()
-    return render(request, 'news_infos/index.html', {'steadyWords': steadyWords, 'hotWords': hotWords})
+# def hot_word(request):
+#     hotWords = rank.returnHotWord()
+#     steadyWords = rank.returnSteadyWord()
+#     return render(request, 'news_infos/index.html', {'steadyWords': steadyWords, 'hotWords': hotWords})
+
+
 
 
 def check_login(request):
@@ -156,7 +158,7 @@ def deleteScrap(request):
     return redirect('myscrap')
 
 
-def categoryFilter(request):
-    category = request.GET.get('category', '')
-    data = srch.findCategoryRank(category)
-    return render(request, 'news_infos/index.html', {''})
+def hot_word(request):
+    category = request.GET.get('category', '전체')
+    words = rank.findHotCategory(category)
+    return render(request, 'news_infos/index.html', {'words': words})

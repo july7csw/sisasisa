@@ -13,5 +13,5 @@ urlpatterns = [
     path('deleteScrap', views.deleteScrap, name='deleteScrap'),
     path('findMeaning', views.findMeaning, name='findMeaning'),
     path('scrapCheck', views.scrapCheck, name='scrapCheck'),
-    path('categoryFilter', views.categoryFilter, name="categoryFilter")
+    # path('categoryFilter', views.categoryFilter, name="categoryFilter")
 ]
