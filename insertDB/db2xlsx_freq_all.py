@@ -92,7 +92,85 @@ django.setup()
 # result = pd.DataFrame({'word': wordList, 'cnt_202009': count202009})
 # result.to_excel('Amounted_mentions_compare.xlsx', sheet_name='Sheet1')
 
+from sisasisa.models import Words
+from sisasisa.models import News_infos
+from sisasisa.models import Amounted_mentions
+from sisasisa.models import Assoicated_words
+from sisasisa.models import User_scrap
+from django.db.models import Count
+
+# def getNewsInfo(start, end, category):
+#     newsInfo = News_infos.objects.filter(published_at__range=[start, end], category__icontains=category).values('wordId')
+#     return newsInfo
+#
+# def makeAvgDF(querySet):
+#     wordList, cntList = [], []
+#     for j in range(0, len(querySet)):
+#         wordList.append(findWordName(querySet[j]['wordId']))
+#         cntList.append(querySet[j]['count']/12)
+#     df = pd.DataFrame({'word': wordList, 'avg': cntList})
+#     return df
+#
+# def makeCntDF(querySet):
+#     wordList, cntList = [], []
+#     for j in range(0, len(querySet)):
+#         wordList.append(findWordName(querySet[j]['wordId']))
+#         cntList.append(querySet[j]['count'])
+#     df = pd.DataFrame({'word': wordList, 'cnt': cntList})
+#     return df
+#
+# def makeHotRank():
+#     categoryList = ['사회', '경제', '문화', 'IT']
+#     writer = pd.ExcelWriter('hotWordCompare.xlsx', engine='openpyxl')
+#     for i in range(0, len(categoryList)):
+#         avgInfo = getNewsInfo("2019-09-01", "2020-08-31", categoryList[i])
+#         avgInfo = avgInfo.annotate(count=Count('wordId'))
+#         cntInfo = getNewsInfo("2020-09-01", "2020-09-30", categoryList[i])
+#         cntInfo = cntInfo.annotate(count=Count('wordId'))
+#         avgDF = makeAvgDF(avgInfo)
+#         cntDF = makeCntDF(cntInfo)
+#         cntSheet = categoryList[i] + "cnt"
+#         avgDF.to_excel(writer, sheet_name=categoryList[i])
+#         cntDF.to_excel(writer, sheet_name=cntSheet)
+#         writer.save()
+#     writer.close()
+#
+# makeHotRank()
 
 
+#data = pd.read_excel('hotWordCompare.xlsx', sheet_name="Sheet1")
 
-
+# wordList = []
+# words = Words.objects.all().values('word')
+# for i in range(1, len(wordList)):
+#     word = wordList[i]['word']
+#     wordList.append(word)
+#
+# def makeCnt(df, value, word):
+#     word1 = df['word']
+#     cnt1 = df[value]
+#     cntList_f = []
+#     for j in range(0, len(word1)):
+#         if word in word1[j]:
+#             cntList_f.append(cnt1[j])
+#         else:
+#             cntList_f.append(0)
+#     return cntList_f
+#
+# def findValue(word):
+#     categoryList = ['사회', '경제', '문화', 'IT']
+#     for cl in categoryList:
+#         writer = pd.ExcelWriter('hotWordCompare_f.xlsx', engine='openpyxl')
+#         data1 = pd.read_excel('hotWordCompare.xlsx', sheet_name=cl)
+#         avgList = makeCnt(data1, 'avg', word)
+#         sheetName = cl + "cnt"
+#         data2 = pd.read_excel('hotWordCompare.xlsx', sheet_name=sheetName)
+#         cntList = makeCnt(data2, 'cnt', word)
+#         df = pd.DataFrame({'word': wordList, 'avg': avgList, 'cnt': cntList})
+#         df.to_excel(writer, sheet_name=categoryList[i])
+#         writer.save()
+#     writer.close()
+#     return None
+#
+# for k in range(1, len(wordList)):
+#     findValue(wordList[k])

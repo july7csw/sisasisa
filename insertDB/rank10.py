@@ -15,3 +15,8 @@ def returnSteadyWord(category):
     data = pd.read_excel("insertDB/steadyRank.xlsx", sheet_name=category)
     words = data['word']
     return words
+
+def findHotCategory(category):
+    data = pd.read_excel("insertDB/hotWordData.xlsx", sheet_name=category)
+    words = data['word'][1:11]
+    return words

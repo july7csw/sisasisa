@@ -156,3 +156,11 @@ def deleteScrap(request):
     user_Identifier = request.user.email
     srch.deleteScrap(word, user_Identifier)
     return redirect('myscrap')
+
+
+
+def hot_word(request):
+    category = request.GET.get('category', '전체')
+    words = rank.findHotCategory(category)
+    return render(request, 'news_infos/index.html', {'words': words})
+
