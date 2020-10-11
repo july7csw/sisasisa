@@ -14,6 +14,7 @@ from sisasisa.models import User_scrap
 
 
 def findScrapList(word, user_Identifier):
+    print(word, "데이터 찾기 실행")
     wordId = findWordId(word)
     data = User_scrap.objects.filter(wordId=wordId, user_Identifier=user_Identifier).values()
     if data.exists():
@@ -27,8 +28,8 @@ def findMeaning(wordId):
     return meaning
 
 
-def findWordName(wordId):
-    word = Words.objects.get(id=wordId).word
+def findWordName(wordID):
+    word = Words.objects.get(id=wordID).word
     return word
 
 
@@ -38,6 +39,7 @@ def findWordId(word):
 
 
 def insertScrap(word, user_Identifier):
+    print(word, "데이터 넣기 실행")
     wordId = findWordId(word)
     User_scrap.objects.create(
         wordId=wordId,
@@ -121,6 +123,7 @@ def createFile():
     categoryList = ['사회', '경제', '문화', 'IT']
     for i in range(0, len(categoryList)):
         findCategoryRank(categoryList[i]).to_excel(writer, sheet_name=categoryList[i])
+    print("끝")
 
     writer.save()
     writer.close()
@@ -140,7 +143,7 @@ def createCategoryDF(newsInfo):
     wordList, CntList = [], []
     for i in range(0, len(newsInfo)):
         wordList.append(findWordName(newsInfo[i]['wordId']))
-        CntList.append(newsInfo[i]['count'] / 12)
+        CntList.append(newsInfo[i]['count']/12)
     df = pd.DataFrame({'word': wordList, 'avg': CntList})
 
     df = df.sort_values(by='count', ascending=False)
