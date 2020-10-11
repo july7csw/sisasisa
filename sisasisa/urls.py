@@ -13,5 +13,6 @@ urlpatterns = [
     path('insertScrap', views.insertScrap, name='insertScrap'),
     path('deleteScrap', views.deleteScrap, name='deleteScrap'),
     path('findMeaning', views.findMeaning, name='findMeaning'),
-    path('scrapCheck', views.scrapCheck, name='scrapCheck')
+    path('scrapCheck', views.scrapCheck, name='scrapCheck'),
+    # path('categoryFilter', views.categoryFilter, name="categoryFilter")
 ]

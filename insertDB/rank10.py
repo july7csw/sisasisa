@@ -1,5 +1,4 @@
 import json
-
 import pandas as pd
 
 
@@ -20,4 +19,10 @@ def returnSteadyWord(category, limit):
         category = '전체'
     data = pd.read_excel("insertDB/steadyRank.xlsx", sheet_name=category)
     words = data['word'].head(limit)
+    return words
+
+
+def findHotCategory(category):
+    data = pd.read_excel("insertDB/hotWordData.xlsx", sheet_name=category)
+    words = data['word'][1:11]
     return words

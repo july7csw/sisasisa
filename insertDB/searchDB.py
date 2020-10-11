@@ -127,3 +127,25 @@ def createFile():
 
     writer.save()
     writer.close()
+
+
+def findCategoryRank3():
+    wordList = Words.objects.all().wordId
+    categoryList = ['사회', '경제', '문화', 'IT']
+    for i in range(0, len(categoryList)):
+        newsInfo = News_infos.objects.filter(published_at__range=["2019-09-01", "2020-08-31"],
+                                             category__icontains=categoryList[i]).values('wordId')
+        createCategoryDF(newsInfo).to_excel('hotWordAvg.xlsx', sheet_name=categoryList[i])
+
+
+def createCategoryDF(newsInfo):
+    newsInfo = newsInfo.annotate(count=Count('wordId'))
+    wordList, CntList = [], []
+    for i in range(0, len(newsInfo)):
+        wordList.append(findWordName(newsInfo[i]['wordId']))
+        CntList.append(newsInfo[i]['count']/12)
+    df = pd.DataFrame({'word': wordList, 'avg': CntList})
+
+    df = df.sort_values(by='count', ascending=False)
+    finDf = df.head(60)
+    return finDf
