@@ -4,16 +4,94 @@
 
 <!-- contents start -->
 <script type="text/javascript">
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
     $(function () {
-        $('#hot_li').removeClass("active");
+        var user = $('#user').val()
+        $('.nav-tabs li').removeClass("active");
+
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
-            $(".modal-header .modalword").text(wordvalue);
+            var splitindex = wordvalue.indexOf(".")
+            var onlyword = wordvalue.slice(splitindex+1)
+            var word = onlyword.trim()
+            $(".modal-header .modalword").text(word);
+            var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
+            var img = document.getElementById('wordCloud');
+            img.setAttribute('src',filepath)
+            $.ajax({
+                url: '/findMeaning',
+                method: 'POST',
+                data: {
+                    word: word
+                },
+                async: false,
+                success: function (data) {
+                    $('#meaning').text(data['word'])
+                    if (user.length > 0) {
+                        $.ajax({
+                            url: '/scrapCheck',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            success: function (data) {
+                                msg = data['msg']
+                                if (msg === 'yes') {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
+                                } else {
+                                    $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                                }
+                            }
+                        })
+                    }
+                }
+            });
+            $('#scrap').click(function (){
+                if (user.length <= 0) {
+                    alert("로그인이 필요합니다.");
+                    window.location.href = 'user/login';
+                } else {
+                    word = $(".modal-header .modalword").text()
+                    var cls = $('#scrap').attr('class');
+                    if (cls === 'glyphicon glyphicon-star gray-star') {
+                        $.ajax({
+                            url: '/insertScrap',
+                            method: 'POST',
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star yellow-star')
+                            }
+                        });
+                    } else if (cls === 'glyphicon glyphicon-star yellow-star') {
+                        $.ajax({
+                            url: '/deleteScrap',
+                            method: "POST",
+                            data: {
+                                word: word
+                            },
+                            async: false,
+                            success: function (data) {
+                                $('#scrap').attr('class', 'glyphicon glyphicon-star gray-star')
+                            }
+                        });
+                    }
+                }
+            })
         })
     });
 </script>
+<input type="hidden" id="user" value="{{ user.email }}">
 <div class="row maincontent">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-lg-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
         <div>
 {% if notWord %}
             <h4>{{ notWord }}에 대한 검색결과가 없습니다.</h4>
@@ -47,6 +125,7 @@
         </ul>
     {% endif %}
     </div>
+    <div class="col-lg-2"></div>
 </div>
 
 <!-- Modal1 -->
@@ -55,15 +134,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title modalword" id="wordvalue"></h4>
+                <div>
+                    <span class="modal-title modalword" id="wordvalue"></span>&nbsp&nbsp
+                    <a href="#"><span id="scrap" class="glyphicon glyphicon-star gray-star"></span></a>
+                </div>
             </div>
             <div class="modal-body">
                 <p>
-                    뜻이 들어갈 부분입니다. <br> 인터넷 기반(Cloud)의 컴퓨터기술(Computing)을 의미하는 것으로, 이때의 구름(Cloud)은 컴퓨터 네트워크 상에 숨겨진 복잡한 인프라 구조, 인터넷을 뜻한다. 사용자가 필요한 소프트웨어를 자신의 컴퓨터에 설치하지 않고도 인터넷 접속을 통해 언제든 사용할 수 있고 동시에 각종 IT 기기로 데이터를 손쉽게 공유할 수 있는 사용환경이다. 즉, 개인이 웹에 접속해서 포토샵, 오피스 같은 프로그램을 작업할 수 있고 그 작업에 대한 저장도 웹에서 하게 된다. 결국 가상의 공간에 하나의 서버(컴퓨터)만을 놓고 이 하나의 컴퓨터를 통해 여러 사람이 개인의 작업을 할 수 있는 것이다. 클라우드라는 용어는 1990년대에 거대한 규모의 ATM을 지칭하는 데서 쓰이다가, 소비자 중심의 웹 기반이 형성되는 21세기에 들어서야 클라우드 컴퓨팅이라는 용어가 널리 퍼지기 시작했다.
+                <div id="meaning"></div>
                 </p>
                 <p>
                     <b>연관어</b><br>
-                    <img src="/static/wordCloud/wordCloud_{{ keyword }}.png" style="width: 100%;">
+                    <img id="wordCloud" style="width: 100%;">
                 </p>
             </div>
             <div class="modal-footer">

@@ -52,8 +52,7 @@
                     list.html(content)
                 }
             })
-            }
-        );
+        });
 
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
@@ -97,6 +96,7 @@
                     alert("로그인이 필요합니다.");
                     window.location.href = 'user/login';
                 } else {
+                    console.log("왔어");
                     var cls = $('#scrap').attr('class');
                     if (cls === 'glyphicon glyphicon-star gray-star') {
                         $.ajax({
@@ -128,7 +128,7 @@
         })
     });
 </script>
-        <input type="hidden" id="user" value="{{ user.email }}">
+<input type="hidden" id="user" value="{{ user.email }}">
 <div class="row maincontent">
     <div class="col-lg-2"></div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
