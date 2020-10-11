@@ -64,17 +64,6 @@ def scrapCheck(request):
 
 
 @csrf_exempt
-def addSteady(request):
-    category = request.POST.get('category')
-    limit = request.POST.get('limit')
-    words = rank.returnSteadyWord(category, limit)
-    list = []
-    for i in range(0, len(words)):
-        list.append(words[i])
-    return HttpResponse(json.dumps(list), content_type="application/json; charset=utf-8")
-
-
-@csrf_exempt
 def insertScrap(request):
     loginCheck = check_login(request)
     if loginCheck is True:
@@ -167,3 +156,11 @@ def deleteScrap(request):
     user_Identifier = request.user.email
     srch.deleteScrap(word, user_Identifier)
     return redirect('myscrap')
+
+
+
+def hot_word(request):
+    category = request.GET.get('category', '전체')
+    words = rank.findHotCategory(category)
+    return render(request, 'news_infos/index.html', {'words': words})
+
