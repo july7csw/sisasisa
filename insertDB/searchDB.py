@@ -113,5 +113,17 @@ def createCategoryDF(newsInfo):
     df = pd.DataFrame({'word': wordList, 'count': CntList})
 
     df = df.sort_values(by='count', ascending=False)
-    finDf = df.head(50)
+    finDf = df.head(70)
     return finDf
+
+
+def createFile():
+    writer = pd.ExcelWriter('steadyRank.xlsx', engine="openpyxl")
+    findCategoryRank('').to_excel(writer, sheet_name='전체')
+    categoryList = ['사회', '경제', '문화', 'IT']
+    for i in range(0, len(categoryList)):
+        findCategoryRank(categoryList[i]).to_excel(writer, sheet_name=categoryList[i])
+    print("끝")
+
+    writer.save()
+    writer.close()

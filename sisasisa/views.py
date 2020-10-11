@@ -17,15 +17,15 @@ def index(request):
 
 def steady_word(request):
     category = request.GET.get('category', '')
-    words = rank.returnSteadyWord(category)
+    limit = request.GET.get('limit', '')
+    words = rank.returnSteadyWord(category, limit)
     return render(request, 'news_infos/steady.html', {'words': words})
 
 
 def hot_word(request):
     category = request.GET.get('category', '')
     hotWords = rank.returnHotWord(category)
-    steadyWords = rank.returnSteadyWord(category)
-    return render(request, 'news_infos/index.html', {'steadyWords': steadyWords, 'hotWords': hotWords})
+    return render(request, 'news_infos/index.html', {'hotWords': hotWords})
 
 
 def check_login(request):
@@ -61,6 +61,17 @@ def scrapCheck(request):
         'msg': msg
     }
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+
+@csrf_exempt
+def addSteady(request):
+    category = request.POST.get('category')
+    limit = request.POST.get('limit')
+    words = rank.returnSteadyWord(category, limit)
+    list = []
+    for i in range(0, len(words)):
+        list.append(words[i])
+    return HttpResponse(json.dumps(list), content_type="application/json; charset=utf-8")
 
 
 @csrf_exempt

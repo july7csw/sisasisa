@@ -3,10 +3,51 @@
 
 <!-- contents start -->
 <script type="text/javascript">
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
     $(function () {
+
         var user = $('#user').val()
+        var limit = 10
+        var category = getParameter('category')
+
         $('.nav-tabs li').removeClass("active");
         $('#hot_li').addClass("active");
+
+        $('#limit').click(function () {
+            var list = $('#list')
+            list.empty()
+            limit += 5
+            $.ajax({
+                url: '/addSteady',
+                method: 'POST',
+                data: {
+                    category : category,
+                    limit : limit
+                },
+                success: function (data) {
+                    var content = '';
+                    var length = data.length
+                    for(i=0; i<limit; i++){
+                        content += '<tr>'
+                        content += '<td colspan="2">'
+                        content += '<a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest">'
+                        content += '<h5>'
+                        content += i+1+'. '+data[i]
+                        content += '</h5><a></td></tr>'
+                    }
+                    if(limit === 50) {
+                        $('#limitBtnTable').attr('hidden','hidden')
+                    }
+                    list.html(content)
+                }
+            })
+            }
+        );
 
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
@@ -104,7 +145,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="list">
                 {%  for w in words %}
                     <tr>
                         <td colspan="2">
@@ -114,7 +155,9 @@
                         </td>
                     </tr>
                 {% endfor %}
-                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+                <tbody id="limitBtnTable">
+                <tr style="text-align: center;"><td colspan="2"><h5 id="limit">더보기</h5></td></tr>
                 </tbody>
             </table>
         </div>
