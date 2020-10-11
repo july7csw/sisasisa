@@ -20,12 +20,6 @@ class Words(models.Model):
     word = models.CharField(max_length=30)
     meaning = models.TextField()
 
-    # def __str__(self):
-    #     return self.word
-    #
-    # def publish(self):
-    #     self.save()
-
 
 class Assoicated_words(models.Model):
     wordId = models.CharField(max_length=30)

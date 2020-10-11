@@ -82,7 +82,7 @@ def amounted_mention():
 
     finDf = pd.DataFrame({'word': wordNameList, 'amt': wordAmtList})
 
-    writer = pd.ExcelWriter('202009_steady10.xlsx', engine="openpyxl")
+    writer = pd.ExcelWriter('insertDB/202009_steady10.xlsx', engine="openpyxl")
 
     finDf.to_excel(writer, sheet_name='123')
     writer.save()
