@@ -47,6 +47,7 @@ def addSteady(request):
         list.append(words[i])
     return HttpResponse(json.dumps(list), content_type="application/json; charset=utf-8")
 
+
 @csrf_exempt
 def addHot(request):
     category = request.POST.get('category')
@@ -56,6 +57,7 @@ def addHot(request):
     for i in range(0, len(words)):
         list.append(words[i])
     return HttpResponse(json.dumps(list), content_type="application/json; charset=utf-8")
+
 
 def detail_word(request):
     word = Words.objects.get(word=request.__getattribute__('word'))
@@ -182,4 +184,3 @@ def hot_word(request):
     category = request.GET.get('category', '전체')
     words = rank.findHotCategory(category)
     return render(request, 'news_infos/index.html', {'words': words, 'category': category})
-
