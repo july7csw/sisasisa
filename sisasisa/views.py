@@ -158,7 +158,6 @@ def deleteScrap(request):
     return redirect('myscrap')
 
 
-
 def hot_word(request):
     category = request.GET.get('category', '전체')
     words = rank.findHotCategory(category)
