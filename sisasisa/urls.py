@@ -8,6 +8,7 @@ urlpatterns = [
     path('steady', views.steady_word, name='steady'),
     path('addSteady', views.addSteady, name='addSteady'),
     path('hot', views.hot_word, name='hot'),
+    path('addHot', views.addHot, name='addHot'),
     path('myscrap', views.myscrap, name='myscrap'),
     path('search', views.search, name='search'),
     path('insertScrap', views.insertScrap, name='insertScrap'),

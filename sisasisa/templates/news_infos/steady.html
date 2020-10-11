@@ -10,18 +10,20 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
     $(function () {
-
+        var category = getParameter('category')
+        if (category.length !== 0) {
+            $('#categoryDefault').text(category)
+        }
         var user = $('#user').val()
         var limit = 10
-        var category = getParameter('category')
 
         $('.nav-tabs li').removeClass("active");
-        $('#hot_li').addClass("active");
+        $('#steady_li').addClass("active");
 
         $('#limit').click(function () {
             var list = $('#list')
             list.empty()
-            limit += 5
+            limit += 40
             $.ajax({
                 url: '/addSteady',
                 method: 'POST',
@@ -133,7 +135,7 @@
                         <th><h4>STEADY 시사용어</h4></th>
                         <th style="width: 10%;">
                             <div class="dropdown">
-                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown"><span id="categoryDefault">카테고리 선택</span>
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu">
                                 <li><a href="/steady?category=사회">사회</a></li>

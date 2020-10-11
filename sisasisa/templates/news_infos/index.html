@@ -4,12 +4,55 @@
 
 <!-- contents start -->
 <script type="text/javascript">
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
     $(function () {
+        var category = getParameter('category')
+        if (category.length !== 0) {
+            $('#categoryDefault').text(category)
+        }
         var user = $('#user').val()
+        var limit = 10
+
         $('.nav-tabs li').removeClass("active");
         $('#hot_li').addClass("active");
 
+        $('#limit').click(function () {
+            var list = $('#list')
+            list.empty()
+            limit += 40
+            $.ajax({
+                url: '/addHot',
+                method: 'POST',
+                data: {
+                    category : category,
+                    limit : limit
+                },
+                success: function (data) {
+                    var content = '';
+                    var length = data.length
+                    for(i=0; i<limit; i++){
+                        content += '<tr>'
+                        content += '<td colspan="2">'
+                        content += '<a class="modaldata resultword" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest">'
+                        content += '<h5>'
+                        content += i+1+'. '+data[i]
+                        content += '</h5><a></td></tr>'
+                    }
+                    if(limit === 50) {
+                        $('#limitBtnTable').attr('hidden','hidden')
+                    }
+                    list.html(content)
+                }
+            })
+        });
+
         $(".modaldata").click(function () {
+            console.log("왔니?");
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(".")
             var onlyword = wordvalue.slice(splitindex+1)
@@ -94,7 +137,7 @@
                         <th><h4>HOT 시사용어</h4></th>
                         <th style="width: 10%;">
                             <div class="dropdown">
-                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">카테고리 선택
+                              <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown"><span id="categoryDefault">카테고리 선택</span>
                               <span class="caret"></span></button>
                               <ul class="dropdown-menu ">
                                 <li><a href="/hot?category=사회">사회</a></li>
@@ -106,7 +149,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="list">
                 {%  for w in words %}
                     <tr>
                         <td colspan="2">
@@ -116,7 +159,9 @@
                         </td>
                     </tr>
                 {% endfor %}
-                    <tr style="text-align: center;"><td colspan="2"><h5>더보기</h5></td></tr>
+                </tbody>
+                <tbody id="limitBtnTable">
+                    <tr style="text-align: center;"><td colspan="2"><h5 id="limit">더보기</h5></td></tr>
                 </tbody>
             </table>
         </div>
