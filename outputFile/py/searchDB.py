@@ -14,7 +14,6 @@ from sisasisa.models import User_scrap
 
 
 def findScrapList(word, user_Identifier):
-    print(word, "데이터 찾기 실행")
     wordId = findWordId(word)
     data = User_scrap.objects.filter(wordId=wordId, user_Identifier=user_Identifier).values()
     if data.exists():
@@ -39,7 +38,6 @@ def findWordId(word):
 
 
 def insertScrap(word, user_Identifier):
-    print(word, "데이터 넣기 실행")
     wordId = findWordId(word)
     User_scrap.objects.create(
         wordId=wordId,
@@ -47,6 +45,7 @@ def insertScrap(word, user_Identifier):
     )
 
 
+# 언급량 합하는 코드
 def amounted_mention():
     amountList = list(Amounted_mentions.objects.all().values())
     df = pd.DataFrame(columns=['wordId', 'Amount'])
@@ -82,7 +81,7 @@ def amounted_mention():
 
     finDf = pd.DataFrame({'word': wordNameList, 'amt': wordAmtList})
 
-    writer = pd.ExcelWriter('insertDB/202009_steady10.xlsx', engine="openpyxl")
+    writer = pd.ExcelWriter('', engine="openpyxl")
 
     finDf.to_excel(writer, sheet_name='123')
     writer.save()
@@ -118,7 +117,7 @@ def createCategoryDF(newsInfo):
 
 
 def createFile():
-    writer = pd.ExcelWriter('steadyRank.xlsx', engine="openpyxl")
+    writer = pd.ExcelWriter('../xlsx/steadyRank.xlsx', engine="openpyxl")
     findCategoryRank('').to_excel(writer, sheet_name='전체')
     categoryList = ['사회', '경제', '문화', 'IT']
     for i in range(0, len(categoryList)):

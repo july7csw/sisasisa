@@ -7,7 +7,7 @@ django.setup()
 
 from sisasisa.models import Words
 
-file_PATH = 'sisa_term_20200924.xlsx'
+file_PATH = '../xlsx/sisa_term_20200924.xlsx'
 result = []
 
 with open(file_PATH, newline='') as files:
