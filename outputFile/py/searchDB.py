@@ -27,8 +27,8 @@ def findMeaning(wordId):
     return meaning
 
 
-def findWordName(wordID):
-    word = Words.objects.get(id=wordID).word
+def findWordName(wordId):
+    word = Words.objects.get(id=wordId).word
     return word
 
 
@@ -81,7 +81,7 @@ def amounted_mention():
 
     finDf = pd.DataFrame({'word': wordNameList, 'amt': wordAmtList})
 
-    writer = pd.ExcelWriter('', engine="openpyxl")
+    writer = pd.ExcelWriter('insertDB/202009_steady10.xlsx', engine="openpyxl")
 
     finDf.to_excel(writer, sheet_name='123')
     writer.save()
@@ -117,12 +117,11 @@ def createCategoryDF(newsInfo):
 
 
 def createFile():
-    writer = pd.ExcelWriter('../xlsx/steadyRank.xlsx', engine="openpyxl")
+    writer = pd.ExcelWriter('steadyRank.xlsx', engine="openpyxl")
     findCategoryRank('').to_excel(writer, sheet_name='전체')
     categoryList = ['사회', '경제', '문화', 'IT']
     for i in range(0, len(categoryList)):
         findCategoryRank(categoryList[i]).to_excel(writer, sheet_name=categoryList[i])
-    print("끝")
 
     writer.save()
     writer.close()
@@ -142,7 +141,7 @@ def createCategoryDF(newsInfo):
     wordList, CntList = [], []
     for i in range(0, len(newsInfo)):
         wordList.append(findWordName(newsInfo[i]['wordId']))
-        CntList.append(newsInfo[i]['count']/12)
+        CntList.append(newsInfo[i]['count'] / 12)
     df = pd.DataFrame({'word': wordList, 'avg': CntList})
 
     df = df.sort_values(by='count', ascending=False)

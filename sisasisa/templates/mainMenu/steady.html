@@ -54,7 +54,7 @@
             })
         });
 
-        $(".modaldata").click(function () {
+        $(document).on('click', '.modaldata',function () {
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(".")
             var onlyword = wordvalue.slice(splitindex+1)
@@ -62,7 +62,17 @@
             $(".modal-header .modalword").text(word);
             var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
             var img = document.getElementById('wordCloud');
-            img.setAttribute('src',filepath)
+            var req = new XMLHttpRequest()
+            req.open('GET',filepath,false)
+            req.send(null)
+            var headers = req.status
+            if (headers===200) {
+                img.setAttribute('src',filepath)
+            }
+            else {
+                img.remove()
+                $('#wordCloudMsg').text('연관어 이미지가 없습니다.')
+            }
             $.ajax({
                 url: '/findMeaning',
                 method: 'POST',
@@ -187,6 +197,7 @@
                 </p>
                 <p>
                     <b>연관어</b><br>
+                    <span id="wordCloudMsg"></span>
                     <img id="wordCloud" style="width: 100%;">
                 </p>
             </div>
