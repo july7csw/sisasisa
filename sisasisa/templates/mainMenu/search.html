@@ -13,15 +13,6 @@
     $(function () {
         var user = $('#user').val()
         $('.nav-tabs li').removeClass("active");
-        if($("#wordCloud").css("display") == "none"){
-            $(".abc").show();
-        } else {
-            $(".abc").hide();
-        }
-
-
-출처: https://hohoya33.tistory.com/26 [개발 메모장]
-
 
         $(document).on('click', '.modaldata',function () {
             var wordvalue = $(this).text();
@@ -166,8 +157,7 @@
                 </p>
                 <p>
                     <b>연관어</b><br>
-                    <img id="wordCloud" style="width: 100%;" onerror="this.style.display='none'"/>
-                    <div >연관어 워드클라우드 결과가 없습니다.</div>
+                    <img id="wordCloud" style="width: 100%;">
                 </p>
             </div>
             <div class="modal-footer">
