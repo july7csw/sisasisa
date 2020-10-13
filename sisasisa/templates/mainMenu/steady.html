@@ -54,7 +54,7 @@
             })
         });
 
-        $(".modaldata").click(function () {
+        $(document).on('click', '.modaldata',function () {
             var wordvalue = $(this).text();
             var splitindex = wordvalue.indexOf(".")
             var onlyword = wordvalue.slice(splitindex+1)

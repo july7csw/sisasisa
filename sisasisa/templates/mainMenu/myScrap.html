@@ -7,7 +7,7 @@
     $(function () {
         $('.nav-tabs li').removeClass("active");
         $('#my_li').addClass("active");
-        $(".modaldata").click(function () {
+        $(document).on('click', '.modaldata',function () {
             var word = $(this).text();
             $(".modal-header .modalword").text(word);
             var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
