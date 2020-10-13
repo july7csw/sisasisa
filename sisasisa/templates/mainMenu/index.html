@@ -58,10 +58,7 @@
             var word = onlyword.trim()
             $(".modal-header .modalword").text(word);
             var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
-
-            var files = new Image;
-            files.src = filepath
-            var img = document.getElementById('wordCloud');
+var img = document.getElementById('wordCloud');
             var req = new XMLHttpRequest()
             req.open('GET',filepath,false)
             req.send(null)
