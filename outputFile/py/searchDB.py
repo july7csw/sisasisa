@@ -45,6 +45,7 @@ def insertScrap(word, user_Identifier):
     )
 
 
+# 언급량 합하는 코드
 def amounted_mention():
     amountList = list(Amounted_mentions.objects.all().values())
     df = pd.DataFrame(columns=['wordId', 'Amount'])

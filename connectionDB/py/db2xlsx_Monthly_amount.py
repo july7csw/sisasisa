@@ -8,7 +8,7 @@ django.setup()
 
 from sisasisa.models import Amounted_mentions
 
-writer = pd.ExcelWriter('C:/Users/myth8/PycharmProjects/django_first/insertDB/result_202001001_AmountM.xlsx',
+writer = pd.ExcelWriter('/connectionDB/xlsx/result_202001001_AmountM.xlsx',
                         engine="openpyxl")
 
 amountList = list(Amounted_mentions.objects.filter(label__startswith='2019').values())

@@ -3,12 +3,14 @@ import os
 import django
 import math
 
-from insertDB.searchDB import findWordName
+from outputFile.py.searchDB import findWordName
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
 
 from sisasisa.models import Amounted_mentions
+
+#전월 누적, 평균 낸 후 엑셀파일 생성
 
 amountList = list(Amounted_mentions.objects.filter(label__startswith='2019').values())
 
@@ -97,7 +99,7 @@ for i in range(0, len(wordIdList2)):
 
 finDf = pd.DataFrame({'word': wordList, 'cnt': numList})
 
-writer = pd.ExcelWriter('202009_rank10_f.xlsx', engine="openpyxl")
+writer = pd.ExcelWriter('', engine="openpyxl")
 
 finDf.to_excel(writer, sheet_name='123')
 writer.save()

@@ -12,7 +12,7 @@ django.setup()
 from sisasisa.models import Amounted_mentions
 from sisasisa.models import Words
 
-filename = 'sisa_term_20200924.xlsx'
+filename = '../xlsx/sisa_term_20200924.xlsx'
 data = pd.read_excel(filename, sheet_name='Sheet1')
 wordList = data['word']
 wordIdList, hitsList, errorList = [], [], []
