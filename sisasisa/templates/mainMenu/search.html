@@ -21,8 +21,20 @@
             var word = onlyword.trim()
             $(".modal-header .modalword").text(word);
             var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
+            var files = new Image;
+            files.src = filepath
             var img = document.getElementById('wordCloud');
-            img.setAttribute('src',filepath)
+            var req = new XMLHttpRequest()
+            req.open('GET',filepath,false)
+            req.send(null)
+            var headers = req.status
+            if (headers===200) {
+                img.setAttribute('src',filepath)
+            }
+            else {
+                img.remove()
+                $('#wordCloudMsg').text('연관어 이미지가 없습니다.')
+            }
             $.ajax({
                 url: '/findMeaning',
                 method: 'POST',
