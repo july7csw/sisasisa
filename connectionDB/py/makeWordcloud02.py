@@ -112,12 +112,3 @@ for i in range(1, len(wordList)):
         wordIdList = findWordIdList(word)
         for wil in wordIdList:
             makeWordcloud1(wil)
-
-
-# errorWord = ["손익분기점", "국제노동기구", "MRO", "ROE", "내부수익률", "듀레이션", "부채출자전환", "신용경색",
-#              "합자회사", "자산부채이전", "CDO", "GSP", "공적부조", "PPP", "국제결제은행", "지방채", "MVNO",
-#              "GPS", "ABCP", "COFIX", "파생결합증권", "ELF", "ETF", "상장지수펀드", "IRA", "LP", "역외선물환",
-#              "장외시장", "리츠", "서킷브레이커", "스트레스 테스트", "신용평가", "팬더본드", "워런트"]
-#
-# for ew in errorWord:
-#     makeWordcloud(findWordId(ew))
