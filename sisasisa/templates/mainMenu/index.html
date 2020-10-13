@@ -53,6 +53,7 @@
 
         $(".modaldata").click(function () {
             var wordvalue = $(this).text();
+            console.log(wordvalue);
             var splitindex = wordvalue.indexOf(".")
             var onlyword = wordvalue.slice(splitindex+1)
             var word = onlyword.trim()
@@ -185,7 +186,7 @@
                 </p>
                 <p>
                     <b>연관어</b><br>
-                    <img id="wordCloud" style="width: 100%;">
+                    <img id="wordCloud" style="width: 100%;" onerror="this.text='연관어가 없습니다'"/>
                 </p>
             </div>
             <div class="modal-footer">
