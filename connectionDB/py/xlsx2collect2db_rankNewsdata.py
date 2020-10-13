@@ -1,10 +1,8 @@
 import requests
 import json
-import re
 import pandas as pd
 import os
 import django
-from datetime import datetime
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
@@ -12,17 +10,28 @@ django.setup()
 from sisasisa.models import News_infos
 from sisasisa.models import Words
 
-filename = 'sisa_term_20200924.xlsx'
-data = pd.read_excel(filename, sheet_name='Sheet1')
-wordList = data['word']
-meaningList = data['meaning']
+# 언급량 상위 단어만 뉴스 데이터 넣기
+# xlsx2collect news data limit
 
-monthList, countList = [], []
+filename = '../xlsx/result_20190101_Amount_mention.xlsx'
+data = pd.read_excel(filename)
+
+wordIdList, cntList = data['wordId'], data['2019']
+
+wordIdList2 = []
+
+for i in range(0, len(wordIdList)):
+    if data['2019'][i] >= 300:
+        wordIdList2.append(data['wordId'][i])
+
+print(len(wordIdList2))
+
+monthList = []
 
 
-def findWordId(keyword):
-    wordId = Words.objects.get(word=keyword).id
-    return wordId
+def findWordName(wordId):
+    word1 = Words.objects.get(id=wordId).word
+    return word1
 
 
 def saveNewsInfo(newsList, wordId):
@@ -42,11 +51,11 @@ def saveNewsInfo(newsList, wordId):
         )
 
 
-def findWord(keyword, startQuery, endQuery):
+def findWord(wordId, startQuery, endQuery):
     data = {
         "access_key": "b4329809-2760-4e31-905f-bb2e59fdfd93",
         "argument": {
-            "query": keyword,
+            "query": findWordName(wordId),
             "published_at": {
                 "from": startQuery,
                 "until": endQuery
@@ -95,13 +104,9 @@ def findWord(keyword, startQuery, endQuery):
         url = "http://tools.kinds.or.kr:8888/search/news"
         res = requests.post(url, data=json.dumps(data))
         newsList = res.json()['return_object']['documents']
-        keyword2 = str(keyword).split(" OR")[0]
-        print(keyword2)
-        wordId = findWordId(keyword2)
         saveNewsInfo(newsList, wordId)
-
     except:
-        count = "오류남"
+        print(wordId, " : 오류")
 
 
 def findMonth(m):
@@ -116,25 +121,32 @@ def findEndDay(m):
     if m == 1 or m == 3 or m == 5 or m == 7 or m == 8 or m == 10 or m == 12:
         endDay = "31"
     elif m == 2:
-        endDay = "28"
+        endDay = "29"
     else:
         endDay = "30"
     return endDay
 
 
-for m in range(7, 8):
+for m in range(1, 4):
     month = findMonth(m)
     startDay = "01"
     endDay = findEndDay(m)
-    startQuery = "2019-" + month + "-" + startDay
-    endQuery = "2019-" + month + "-" + endDay
-    for i in range(0, len(wordList)):
-        keyword = wordList[i]
-        if meaningList[i].__eq__(meaningList[i + 1]) and i < len(wordList):
-            keyword = wordList[i] + " OR " + wordList[i + 1]
-            findWord(keyword, startQuery, endQuery)
-        elif i != 0 and meaningList[i].__eq__(meaningList[i - 1]):
-            i = i + 1
-        else:
-            findWord(keyword, startQuery, endQuery)
-        print(month, "월 : ", i, "/", len(wordList))
+    startQuery = "2020-" + month + "-" + startDay
+    endQuery = "2020-" + month + "-" + endDay
+    for i in range(0, len(wordIdList2)):
+        findWord(wordIdList2[i], startQuery, endQuery)
+        print(i, "/", len(wordIdList2))
+
+print("2020시작")
+
+for m in range(1, 5):
+    month = findMonth(m)
+    startDay = "01"
+    endDay = findEndDay(m)
+    startQuery = "2020-" + month + "-" + startDay
+    endQuery = "2020-" + month + "-" + endDay
+    for i in range(0, len(wordIdList2)):
+        findWord(wordIdList2[i], startQuery, endQuery)
+        print(m, "월 : ", i, "/", len(wordIdList2))
+
+print("end!")

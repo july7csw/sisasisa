@@ -9,7 +9,7 @@ django.setup()
 from sisasisa.models import Words
 from sisasisa.models import Assoicated_words
 
-filename = 'associativeWord_1002_1.xlsx'
+filename = '../xlsx/associativeWord_1002_1.xlsx'
 sheetList = []
 
 wb = load_workbook(filename)

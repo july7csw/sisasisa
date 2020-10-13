@@ -1,10 +1,6 @@
-import pandas as pd
 import os
 import django
-import math
 from pandasql import *
-
-from insertDB.searchDB import findWordName
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
 django.setup()
@@ -91,13 +87,6 @@ django.setup()
 #
 # result = pd.DataFrame({'word': wordList, 'cnt_202009': count202009})
 # result.to_excel('Amounted_mentions_compare.xlsx', sheet_name='Sheet1')
-
-from sisasisa.models import Words
-from sisasisa.models import News_infos
-from sisasisa.models import Amounted_mentions
-from sisasisa.models import Assoicated_words
-from sisasisa.models import User_scrap
-from django.db.models import Count
 
 # def getNewsInfo(start, end, category):
 #     newsInfo = News_infos.objects.filter(published_at__range=[start, end], category__icontains=category).values('wordId')

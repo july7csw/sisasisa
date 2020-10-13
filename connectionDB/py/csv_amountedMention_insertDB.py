@@ -7,7 +7,7 @@ django.setup()
 
 from sisasisa.models import Amounted_mentions
 
-file_PATH = 'aa.csv'
+file_PATH = '../xlsx/aa.csv'
 dic = {}
 
 with open(file_PATH, newline='') as file:
