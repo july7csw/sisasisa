@@ -99,16 +99,25 @@ def makeWordcloud2(data, word):
 
 fileList = os.listdir(r"C:\Users\SW\sisasisa\sisasisa\static\wordCloud")
 
-wordList = list(Words.objects.all().values())
-
-for i in range(1, len(wordList)):
-    fileName = "wordCloud_"
-    word = wordList[i]['word']
-    fileName = fileName + word + ".png"
-
-    if fileName in fileList:
-        continue
-    else:
-        wordIdList = findWordIdList(word)
-        for wil in wordIdList:
-            makeWordcloud1(wil)
+# wordList = list(Words.objects.all().values())
+#
+# for i in range(1, len(wordList)):
+#     fileName = "wordCloud_"
+#     word = wordList[i]['word']
+#     fileName = fileName + word + ".png"
+#
+#     if fileName in fileList:
+#         continue
+#     else:
+#         wordIdList = findWordIdList(word)
+#         for wil in wordIdList:
+#             makeWordcloud1(wil)
+#
+# for fl in fileList:
+#     if "wordCloudwordCloud" in fl:
+#         src = os.path.join(r"C:\Users\SW\sisasisa\sisasisa\static\wordCloud", fl)
+#         fileName = fl.replace("wordCloudwordCloud", "wordCloud")
+#         dst = os.path.join(r"C:\Users\SW\sisasisa\sisasisa\static\wordCloud", fileName)
+#         os.rename(src, dst)
+#     else:
+#         continue
