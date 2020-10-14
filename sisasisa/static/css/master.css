@@ -1,0 +1,235 @@
+      a, a:focus, a:hover{
+        color: #9d9d9d;
+        text-decoration: none;
+      }
+      .navbar-toggle{
+        float: left;
+        margin-left: 3%;
+      }
+      .navbar-inverse{
+        background-color: #c0fdff;
+        border : none;
+      }
+      .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+        background-color: #c0fdff;
+        border : none;
+      }
+      .navbar-inverse .navbar-toggle {
+        border: 0;
+        outline: 0;
+      }
+      .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: transparent;
+      }
+      .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+        max-width: 600px;
+      }
+      .navbar-form{
+        padding: 0;
+        margin-right: 1%;
+        box-shadow: none;
+        border: none;
+      }
+      .nav-tabs>li>a{
+        color: #fff;
+      }
+      .nav-tabs {
+        text-align:center;
+        border-bottom: none;
+      }
+      .nav-tabs>li {
+        float:none;
+        display:inline-block;
+        zoom:1;
+      }
+      .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+        color: #2E75B6;
+        background-color: #c0fdff;
+        border: 1px solid #ddd;
+        border-top-color:transparent;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-right-color: transparent;
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-bottom-color: #2E75B6;
+        border-bottom-style: solid;
+        border-bottom-width: 5px;
+        border-left-color: transparent;
+        border-left-style: solid;
+        border-left-width: 1px;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+      }
+      .nav>li>a:focus, .nav>li>a:hover {
+        background-color: transparent;
+       }
+      .nav-tabs>li>a:hover {
+        border-color: transparent;
+      }
+      #ssssmenu>ul{
+        margin-left: 30px;
+        text-align: center;
+      }
+
+      #ssssmenu>ul>li{
+        width: 90px;
+      }
+      #ssssmenu>ul>li:first-child{
+        border-left: none;
+      }
+
+      #ssssmenu>ul>li>a{
+        color: #2E75B6;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      .bgcolorskyblue{
+        background-color: #c0fdff;
+      }
+      .paddingtoptab{
+        padding-top: 50px;
+      }
+      .maincontent{
+        padding-top: 20px;
+        color: #9d9d9d;
+      }
+      h4{
+        font-weight: 600;
+      }
+      h5{
+        font-size: 1.2em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .boldhr{
+        border: 0;
+        height: 2px;
+        background: #ccc;
+      }
+      .btn-link {
+        color: #9d9d9d;
+      }
+      .btn-link:focus, .btn-link:hover {
+        color: #9d9d9d;
+        text-decoration: none;
+        background-color: transparent;
+      }
+      .navheight{
+        height: 50px;
+        padding : 0
+      }
+      .navheight:first-child{
+        padding : 0 3%;
+      }
+      .navheight:last-child{
+        padding-left: 1%;
+      }
+      .navheight>a{
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #ccc;
+       }
+      .right-align{
+        text-align: right;
+      }
+
+      .sssssearchbox, .sssssearchbox>div, .sssssearchbox>div>input, .sssssearchbox>div>div>button, .sssssearchbox>div>div>button>i{
+        background-color: transparent;
+      }
+      .sssssearchbox>div>input{
+        border: none;
+        border-radius: 0;
+        <!--border-bottom: 1px solid #ccc;-->
+        -webkit-box-shadow: 0;
+        box-shadow: none;
+      }
+      .sssssearchbox>div>div>button{
+        border: none;
+        color: #ccc;
+      }
+      .btn-default.active, .btn-default.focus, .btn-default:active, .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
+        color: #ccc;
+        background-color: transparent;
+        border-color: transparent;
+      }
+    .removeicon{
+        font-size: 30px;
+        padding-right: 10%;
+    }
+    .list-group-item{
+        border: none;
+    }
+    .logincontent{
+        padding-top: 30px;
+        color: #9d9d9d;
+    }
+    .screen_out {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        line-height: 0;
+        text-indent: -9999px;
+    }
+    .loginset{
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        box-sizing: border-box;
+    }
+    .loginform{
+        margin: 0;
+        height: 45px;
+        line-height: 1.5;
+    }
+    .loginform>input{
+        border: none;
+        outline: 0;
+        border-radius: 0;
+        box-shadow: none;
+        height: 43px;
+        line-height: 1.5;
+    }
+    .loginset>.loginform+.loginform{
+        border-top: 1px solid #ddd;
+    }
+    .loginbtn{
+        width: 100%;
+        height: 43px;
+        border-radius: 2;
+        color: #fff;
+        background-color: #2E75B6;
+    }
+    .checkbox, .radio {
+        margin: 15px 0;
+        line-height: 1.5;
+    }
+    .naverlogin{
+        margin-top: 15px;
+    }
+    .dropdown-menu {
+        min-width: 120px;
+    }
+    .message{
+        margin-top: 40px;
+        color: #9d9d9d;
+        text-align: center;
+    }
+    .gray-star{
+        font-size: 1.4em;
+        color: #ccc;
+        line-height: 1.5;
+    }
+    .yellow-star{
+        font-size: 1.4em;
+        color: #FFDC3C;
+        line-height: 1.5;
+    }
+    .modalword{
+        font-weight: 600;
+        font-size: 1.5em;
+    }
