@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block container %}
+{% load searchWord %}
 
 <!-- contents start -->
 <script type="text/javascript">
@@ -29,7 +30,7 @@
                         <h5>{{ ew.word}}</h5>
                     </a>
                 </dt>
-                <dd class="resultpreview">{{ ew.meaning | slice:":109" }}...</dd>
+                <dd class="resultpreview">{{ ew.meaning | addCss:keyword | slice:":109" }}...</dd>
             </dl>
           </li>
          {% endfor %}
@@ -45,7 +46,7 @@
                         <h5>{{ iw.word }}</h5>
                     </a>
                 </dt>
-                <dd class="resultpreview">{{ iw.meaning | slice:":109" }}...</dd>
+                <dd class="resultpreview">{{ iw.meaning | addCss:keyword | slice:":109" }}...</dd>
             </dl>
           </li>
         {% endfor %}
@@ -61,7 +62,7 @@
                         <h5>{{ key }}</h5>
                     </a>
                 </dt>
-                <dd class="resultpreview">{{ value | slice:":109" }}...</dd>
+                <dd class="resultpreview">{{ value | addCss:keyword | slice:":109" }}...</dd>
             </dl>
           </li>
         {% endfor %}
