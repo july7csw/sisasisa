@@ -63,18 +63,15 @@ def makeWordcloud1(wordId):
             pass
         else:
             for wl in wordIdList:
-                print("단어: ", findWordName(wl['id']))
                 data = findAssoAndWeight(wl['id'])
                 if len(data) > 0:
                     makeWordcloud2(data, word)
                 else:
-                    print("연관어 없음")
                     continue
 
 def makeWordcloud2(data, word):
     a = {}
     filePath = r"C:\Users\SW\sisasisa\sisasisa\static\wordCloud"
-    print(filePath)
     for k in range(0, len(data)):
         a.setdefault(data['word'][k], data['weight'][k])
 

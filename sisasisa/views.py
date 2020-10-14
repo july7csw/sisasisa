@@ -125,11 +125,12 @@ def search(request):
         keyword = """' '"""
         return render(request, 'mainMenu/search.html', {'notWord': keyword})
     else:
-        inWord = words.filter(word__icontains=keyword)
+        equalWord = words.filter(word__iexact=keyword)
+        inWord = words.filter(Q(word__icontains=keyword) & ~Q(word__iexact=keyword))
         inMeaning = words.filter(
             Q(meaning__icontains=keyword) & ~Q(word__icontains=keyword)
         )
-        if inWord.exists() is False and inMeaning.exists() is False:
+        if equalWord.exists() is False and inWord.exists() is False and inMeaning.exists() is False:
             return render(request, 'mainMenu/search.html', {'notWord': keyword})
         else:
             meaningList = [im.meaning for im in inMeaning]
@@ -142,8 +143,7 @@ def search(request):
             inMeaning_word = [im.word for im in inMeaning]
             meaningResult = [x for x in zip(inMeaning_word, inMeaning_mean)]
             return render(request, 'mainMenu/search.html',
-                          {'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
-
+                          {'equalWord': equalWord,'inWord': inWord, 'meaningResult': meaningResult, 'keyword': keyword})
 
 @csrf_exempt
 def findMeaning(request):

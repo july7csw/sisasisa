@@ -156,4 +156,4 @@ def wordStrip():
         dt = Words.objects.get(id=data[i]['id'])
         dt.word = data[i]['word'].strip()
         dt.save()
-        print(i, "/", len(data))
+        (i, "/", len(data))
