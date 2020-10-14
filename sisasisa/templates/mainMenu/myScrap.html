@@ -7,19 +7,39 @@
     $(function () {
         $('.nav-tabs li').removeClass("active");
         $('#my_li').addClass("active");
-        $(document).on('click', '.modaldata',function () {
-            var word = $(this).text();
+
+        $(document).on('click', '.deleteModalData', function () {
+            var deleteWord = $(this).parent().prev().text();
+            $(".modal-header .modalword").text(deleteWord);
+        })
+        $(document).on('click', '#deleteScrap', function () {
+            $('#removemodal').modal('hide');
+            deleteWord = $("#deleteWord").text();
+            $.ajax({
+                url: '/deleteScrap',
+                method: "POST",
+                data: {
+                    word: deleteWord
+                },
+                async: false,
+                success: function (data) {
+                    window.location.href = '/myScrap';
+                }
+            });
+        });
+        $(document).on('click', '#FindMeaning',function () {
+            var wordvalue = $(this).text();
+            var word = wordvalue.trim()
             $(".modal-header .modalword").text(word);
-            var filepath = '/static/wordCloud/wordCloud_'+word+'.png'
+            var filepath = '/static/wordCloud/wordCloud_' + word + '.png'
             var img = document.getElementById('wordCloud');
             var req = new XMLHttpRequest()
-            req.open('GET',filepath,false)
+            req.open('GET', filepath, false)
             req.send(null)
             var headers = req.status
-            if (headers===200) {
-                img.setAttribute('src',filepath)
-            }
-            else {
+            if (headers === 200) {
+                img.setAttribute('src', filepath)
+            } else {
                 img.remove()
                 $('#wordCloudMsg').text('연관어 이미지가 없습니다.')
             }
@@ -32,25 +52,6 @@
                 async: false,
                 success: function (data) {
                     $('#meaning').text(data['word'])
-                }
-            });
-        })
-        $(".deleteModalData").click(function(){
-            var deleteWord = $(this).parent().prev().text();
-            $(".modal-header .modalword").text(deleteWord);
-        })
-        $('#deleteScrap').click(function (){
-            $('#removemodal').modal('hide');
-            deleteWord = $("#deleteWord").text();
-            $.ajax({
-                url: '/deleteScrap',
-                method: "POST",
-                data: {
-                    word: deleteWord
-                },
-                async: false,
-                success: function (data) {
-                    window.location.href = '/myScrap';
                 }
             });
         })
@@ -80,7 +81,7 @@
                 <tbody>
                 {%  for sl in scrapList %}
                     <tr>
-                        <td><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest"><h5>{{ sl }}</h5></a></td>
+                        <td><a class="modaldata" data-toggle="modal" data-target="#ssssmodal" data-id="dataidtest" id="FindMeaning"><h5>{{ sl }}</h5></a></td>
                         <td style="text-align: right;"><a class="modaldata deleteModalData" data-toggle="modal" data-target="#removemodal" data-id="시사용어 삭제"><i class="material-icons removeicon">remove</i></a></td>
                     </tr>
                 {% endfor %}
@@ -135,6 +136,6 @@
         </div>
     </div>
 </div>
-
+    
 <!-- contents end -->
 {% endblock %}
