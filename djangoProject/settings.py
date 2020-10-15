@@ -38,7 +38,7 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['3.135.60.251']
 
 # Application definition
 
@@ -162,7 +162,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'user.User'
 LOGIN_URL = '/user/login/'
 
-NAVER_CLIENT_ID = 'Sj2euf_A2kX28JaEW0Zu'
+NAVER_CLIENT_ID = 'kg9GYEMpSCL0r5oul3gd'
 NAVER_SECRET_KEY = get_secret("NAVER_SECRET_KEY")
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
