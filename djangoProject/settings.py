@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os, json
 from pathlib import Path
+
+import requests
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -188,3 +190,11 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {'access_type': 'online'}
     }
 }
+
+if 'ECS_CONTAINER_METADATA_URI' in os.environ:
+    ELB_HEALTHCHECK_HOSTNAMES = [ip for network in
+                                 requests.get(os.environ['ECS_CONTAINER_METADATA_URI']).json()[
+                                     'Networks']
+                                 for ip in network['IPv4Addresses']]
+    print(f'Append ELB healthcheck hostname: {ELB_HEALTHCHECK_HOSTNAMES}')
+    ALLOWED_HOSTS += ELB_HEALTHCHECK_HOSTNAMES
