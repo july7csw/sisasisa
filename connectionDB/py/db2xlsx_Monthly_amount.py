@@ -3,7 +3,7 @@ import openpyxl
 import django
 import pandas as pd
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import Amounted_mentions

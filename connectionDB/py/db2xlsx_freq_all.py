@@ -2,7 +2,7 @@ import os
 import django
 from pandasql import *
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 # from sisasisa.models import Amounted_mentions

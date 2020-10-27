@@ -3,7 +3,7 @@ import django
 import pandas as pd
 from django.db.models import Count
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import Words

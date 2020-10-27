@@ -4,7 +4,7 @@ import pandas as pd
 import os
 import django
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import News_infos

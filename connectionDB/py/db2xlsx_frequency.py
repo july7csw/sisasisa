@@ -5,7 +5,7 @@ import math
 
 from outputFile.py.searchDB import findWordName
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import Amounted_mentions

@@ -7,7 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import Words

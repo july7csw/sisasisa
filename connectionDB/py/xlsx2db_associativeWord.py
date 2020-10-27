@@ -3,7 +3,7 @@ import django
 import pandas as pd
 from openpyxl import load_workbook
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoProject.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from sisasisa.models import Words
