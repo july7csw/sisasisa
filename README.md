@@ -1,5 +1,7 @@
+<div>
 <img src="/sisasisa/sisasisa01.png"  width="300">
 <img src="/sisasisa/sisasisa02.png"  width="300">
+</div>
 
 ## SISASISA
 SISASISA(시사시사)는 최근 뉴스에 자주 언급되는 시사용어를 분석해 제공하는 모바일웹입니다.     
