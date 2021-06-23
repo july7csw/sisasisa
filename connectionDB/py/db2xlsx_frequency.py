@@ -3,7 +3,7 @@ import os
 import django
 import math
 
-from outputFile.py.searchDB import findWordName
+from sisasisa.static.outputFile.py.searchDB import findWordName
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()

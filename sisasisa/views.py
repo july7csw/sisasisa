@@ -2,8 +2,8 @@ import json
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.db.models import Q
-import outputFile.py.rank10 as rank
-import outputFile.py.searchDB as srch
+import sisasisa.static.outputFile.py.rank10 as rank
+import sisasisa.static.outputFile.py.searchDB as srch
 from .models import User_scrap
 from .models import Words
 from django.views.decorators.csrf import csrf_exempt
