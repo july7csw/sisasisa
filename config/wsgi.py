@@ -21,7 +21,7 @@ import django
 from django.core.handlers.wsgi import WSGIHandler
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eisentask.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "essentials.settings.production")
 django.setup(set_prefix=False)
 
 application = WSGIHandler()
