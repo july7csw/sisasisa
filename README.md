@@ -1,8 +1,3 @@
-<div>
-<img src="/sisasisa/sisasisa01.png"  width="300">
-<img src="/sisasisa/sisasisa02.png"  width="300">
-</div>
-
 ## 시사를 시사하다, SISASISA
 <a href="http://sisasisa.ga" target="_blank">http://sisasisa.ga</a><br/>
 SISASISA(시사시사)는 최근 뉴스에 자주 언급되는 시사용어를 분석해 제공하는 모바일웹입니다.     
@@ -58,4 +53,15 @@ MY 메뉴에서 스크랩한 시사용어를 열람하고 관리합니다.
 
 + MY     
 사용자가 스크랩한 시사용어 목록을 제공합니다.     
-스크랩 목록에서 시사용어를 삭제할 수 있습니다.   
+스크랩 목록에서 시사용어를 삭제할 수 있습니다.     
+<br/>
+
+## SCREENSHOT
+<div>
+<img src="/sisasisa/sisa002.jpg"  width="300">
+<img src="/sisasisa/sisa003.jpg"  width="300">
+</div>
+<div>
+<img src="/sisasisa/sisa004.jpg"  width="300">
+<img src="/sisasisa/sisa005.jpg"  width="300">
+</div>
