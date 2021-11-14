@@ -1,5 +1,5 @@
 ## 시사를 시사하다, SISASISA
-<a href="http://sisasisa.ga" target="_blank">http://sisasisa.ga</a><br/>
+<a href="http://sisasisa.ga" target="_blank">http://sisasisa.gq</a><br/>
 SISASISA(시사시사)는 최근 뉴스에 자주 언급되는 시사용어를 분석해 제공하는 모바일웹입니다.     
 PC에서도 구동 가능한 반응형 웹이나, 모바일에 최적화되어 있습니다. (PC에서 구동 시 크롬에서 실행을 권장합니다)     
 뉴스 언급 빈도가 급상승한 시사용어 콘텐츠를 선별함으로써 시사용어 학습과 시사 상식 이해를 돕고자 합니다.     
