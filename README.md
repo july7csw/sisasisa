@@ -1,5 +1,5 @@
 ## 시사를 시사하다, SISASISA
-<a href="http://sisasisa.ga" target="_blank">http://sisasisa.gq</a><br/>
+http://sisasisa.gq<br/
 SISASISA(시사시사)는 최근 뉴스에 자주 언급되는 시사용어를 분석해 제공하는 모바일웹입니다.     
 PC에서도 구동 가능한 반응형 웹이나, 모바일에 최적화되어 있습니다. (PC에서 구동 시 크롬에서 실행을 권장합니다)     
 뉴스 언급 빈도가 급상승한 시사용어 콘텐츠를 선별함으로써 시사용어 학습과 시사 상식 이해를 돕고자 합니다.     
@@ -27,41 +27,54 @@ http://www.econedu.go.kr/mec/ots/brd/list.do?mnuBaseId=MNU0000124&tplSer=4
 <br/>
 
 ## 기능
-+ 로그인     
++ 로그인
+<div>
+<img src="/sisasisa/ss_login.png"  width="300">
+</div>
 네이버와 구글 계정으로 로그인이 가능합니다.
 
-+ 스크랩     
++ 스크랩
+<div>
+<img src="/sisasisa/ss_scrap01.png"  width="300">
+<img src="/sisasisa/ss_scrap02.png"  width="300">
+</div>
 로그인한 사용자는 시사용어를 스크랩할 수 있습니다.     
 시사용어 상세 설명에서 별 모양 아이콘으로 스크랩/스크랩해제합니다.     
 MY 메뉴에서 스크랩한 시사용어를 열람하고 관리합니다.
 
-+ 검색     
++ 검색
+<div>
+<img src="/sisasisa/ss_search.png"  width="300">
+</div>
 키워드를 통해 시사용어를 검색할 수 있습니다.     
 검색 범위는 용어와 뜻까지 포함합니다.     
 <br/>
 
 ## 주요 콘텐츠     
-+ STEADY     
++ STEADY
+<div>
+<img src="/sisasisa/ss_steady01.png"  width="300">
+<img src="/sisasisa/ss_steady02.png"  width="300">
+</div>
 최근 1년간 뉴스에 꾸준히 높은 빈도로 언급된 시사용어를 랭킹 형식으로 제공합니다.     
 사회/경제/IT/문화 카테고리별로 필터링하여 랭킹 확인 가능합니다.     
 개별 시사용어를 선택하면 용어의 뜻과 최근 1년간 해당 용어가 언급된 기사의 키워드를 워드클라우드 형식으로 볼 수 있습니다.
 
-+ HOT     
++ HOT
+<div>
+<img src="/sisasisa/ss_hot01.png"  width="300">
+<img src="/sisasisa/ss_hot02.png"  width="300">
+</div>
 최근 1년 대비 전월 뉴스 언급량이 급상승한 시사용어를 랭킹 형식으로 제공합니다.     
 사회/경제/IT/문화 카테고리별로 필터링하여 랭킹 확인 가능합니다.     
 개별 시사용어를 선택하면 용어의 뜻과 최근 1년간 해당 용어가 언급된 기사의 키워드를 워드클라우드 형식으로 볼 수 있습니다.
 
-+ MY     
++ MY
+<div>
+<img src="/sisasisa/ss_my01.png"  width="300">
+<img src="/sisasisa/ss_my02.png"  width="300">
+</div>
 사용자가 스크랩한 시사용어 목록을 제공합니다.     
 스크랩 목록에서 시사용어를 삭제할 수 있습니다.     
 <br/>
 
-## SCREENSHOT
-<div>
-<img src="/sisasisa/sisa002.jpg"  width="300">
-<img src="/sisasisa/sisa003.jpg"  width="300">
-</div>
-<div>
-<img src="/sisasisa/sisa004.jpg"  width="300">
-<img src="/sisasisa/sisa005.jpg"  width="300">
-</div>
